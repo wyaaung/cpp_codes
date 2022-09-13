@@ -35,7 +35,11 @@ class SinglyLinkedList{
 
         void delete_node(int);
 
+        void delete_nth_node(int);
+
         int get_count();
+
+
 };
 
 
@@ -87,6 +91,30 @@ void SinglyLinkedList::delete_node(int value){
     prev->next = temp->next;
 
     delete temp;
+}
+
+void SinglyLinkedList::delete_nth_node(int position){
+    Node* temp = head;
+    Node* prev = NULL;
+
+    if (position == 1){
+        *head == head->next;
+        free(temp);
+        return;
+    }
+    
+    int count = 1;
+    while (temp != NULL && count < position){
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == NULL){
+        return;
+    }
+
+    prev->next = temp->next;
+    free(temp);
 }
 
 int SinglyLinkedList::get_count(){
