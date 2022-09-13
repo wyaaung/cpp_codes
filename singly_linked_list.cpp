@@ -36,6 +36,8 @@ class SinglyLinkedList{
 
         void reverse();
 
+        void reverse(int); // Reverse first nth nodes
+
         void swap_nodes(int, int);
 
         void move_to_front();
@@ -83,6 +85,15 @@ void SinglyLinkedList::reverse(){
     }
 
     head = prev;
+}
+
+void SinglyLinkedList::reverse(int n){
+    if (head == NULL || k == 1){
+        return;
+    }
+
+    int length = get_count();
+
 }
 
 void SinglyLinkedList::swap_nodes(int first, int second){
