@@ -30,6 +30,8 @@ class SinglyLinkedList{
 
         void reverse();
 
+        void swap_nodes(int, int);
+
         void push(int); // inserts a new node on the front of the list.
 
         void append(int);
@@ -73,6 +75,44 @@ void SinglyLinkedList::reverse(){
     }
 
     head = prev;
+}
+
+void SinglyLinkedList::swap_nodes(int first, int second){
+    if (first == second){
+        return;
+    }
+
+    Node* prev_first = NULL, curr_first = head;
+    while (curr_first != NULL && curr_first->value != first){
+        prev_first = curr_first
+        curr_first = curr_first->next;
+    }
+
+    Node* prev_second = NULL, curr_second = head;
+    while (curr_second != NULL && curr_second->value != second){
+        prev_second = curr_second;
+        curr_second = curr_second->next;
+    }
+
+    if (curr_first == NULL || curr_second == NULL){
+        return;
+    }
+
+    if (prev_first != NULL){
+        prev_first->next = curr_second;
+    }else{
+        head = curr_second;
+    }
+
+    if (prev_second != NULL){
+        prev_second->next = curr_first;
+    }else{
+        head = curr_first;
+    }
+
+    Node* temp = curr_second->next;
+    curr_second->next = curr_first->next;
+    curr_first->next = temp;
 }
 
 void SinglyLinkedList::push(int new_value){
