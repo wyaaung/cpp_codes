@@ -35,7 +35,7 @@ class SinglyLinkedList{
 
         void delete_node(int);
 
-
+        int get_count();
 };
 
 
@@ -59,7 +59,7 @@ void SinglyLinkedList::print_list(){
 
     // Traverse the list.
     while (temp != NULL) {
-        cout << temp->value << " ";
+        cout << temp->value << "->";
         temp = temp->next;
     }
     cout << "\n";
@@ -87,6 +87,19 @@ void SinglyLinkedList::delete_node(int value){
     prev->next = temp->next;
 
     delete temp;
+}
+
+int SinglyLinkedList::get_count(){
+    int count = 0;
+
+    Node* temp = head;
+
+    while (temp != NULL){
+        count++;
+        temp = temp->next;
+    }
+
+    return count;
 }
 
 int main() {
