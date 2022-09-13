@@ -28,8 +28,9 @@ class SinglyLinkedList{
 
         SinglyLinkedList() { head = NULL; }
 
-        // inserts a new node on the front of the list.
-        void push(int);
+        void reverse();
+
+        void push(int); // inserts a new node on the front of the list.
 
         void append(int);
 
@@ -58,6 +59,21 @@ class SinglyLinkedList{
         Node* get_middle_node();
 };
 
+
+void SinglyLinkedList::reverse(){
+    Node* prev = NULL;
+    Node* current = head;
+    Node* next;
+
+    while (current != NULL){
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+
+    head = prev;
+}
 
 void SinglyLinkedList::push(int new_value){
     Node* new_node = new Node();
