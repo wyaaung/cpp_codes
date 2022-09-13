@@ -42,6 +42,8 @@ class SinglyLinkedList{
         int get_count();
 
         bool search(int);
+
+        Node* get_nth_node(int);
 };
 
 
@@ -121,7 +123,7 @@ void SinglyLinkedList::delete_nth_node(int position){
         return;
     }
     
-    int count = 1;
+    int count = 0;
     while (temp != NULL && count < position){
         prev = temp;
         temp = temp->next;
@@ -158,6 +160,21 @@ bool SinglyLinkedList::search(int value){
     }
 
     return false;
+}
+
+Node* SinglyLinkedList::get_nth_node(int position){
+    Node* current = head;
+
+    int count = 0;
+    while (current != NULL){
+        if (count == position){
+            return current;
+        }
+        count++;
+        current = current->next;
+    }
+
+    return NULL;
 }
 
 int main() {
