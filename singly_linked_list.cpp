@@ -19,6 +19,12 @@ class Node {
         }
 };
 
+void swap(Node*& first, Node*& second){
+    Node* temp = first;
+    first = second;
+    second = temp;
+}
+
 
 // Singly Linked List
 class SinglyLinkedList{
@@ -82,37 +88,56 @@ void SinglyLinkedList::swap_nodes(int first, int second){
         return;
     }
 
-    Node* prev_first = NULL, curr_first = head;
-    while (curr_first != NULL && curr_first->value != first){
-        prev_first = curr_first
-        curr_first = curr_first->next;
+    Node* node_one = NULL, node_two = NULL, current = head;
+    
+    while (current != NULL){
+        if (current->value == first){
+            node_one = current;
+        }
+
+        if (current->value == second){
+            node_two = current;
+        }
+
+        current = current->next;
     }
 
-    Node* prev_second = NULL, curr_second = head;
-    while (curr_second != NULL && curr_second->value != second){
-        prev_second = curr_second;
-        curr_second = curr_second->next;
+    if (node_one != NULL && node_two != NULL){
+        swap(*node_one, *node_two);
+        swap(*(node_one->next), *(node_two->next));
     }
 
-    if (curr_first == NULL || curr_second == NULL){
-        return;
-    }
+    // Node* prev_first = NULL, curr_first = head;
+    // while (curr_first != NULL && curr_first->value != first){
+    //     prev_first = curr_first
+    //     curr_first = curr_first->next;
+    // }
 
-    if (prev_first != NULL){
-        prev_first->next = curr_second;
-    }else{
-        head = curr_second;
-    }
+    // Node* prev_second = NULL, curr_second = head;
+    // while (curr_second != NULL && curr_second->value != second){
+    //     prev_second = curr_second;
+    //     curr_second = curr_second->next;
+    // }
 
-    if (prev_second != NULL){
-        prev_second->next = curr_first;
-    }else{
-        head = curr_first;
-    }
+    // if (curr_first == NULL || curr_second == NULL){
+    //     return;
+    // }
 
-    Node* temp = curr_second->next;
-    curr_second->next = curr_first->next;
-    curr_first->next = temp;
+    // if (prev_first != NULL){
+    //     prev_first->next = curr_second;
+    // }else{
+    //     head = curr_second;
+    // }
+
+    // if (prev_second != NULL){
+    //     prev_second->next = curr_first;
+    // }else{
+    //     head = curr_first;
+    // }
+
+    // Node* temp = curr_second->next;
+    // curr_second->next = curr_first->next;
+    // curr_first->next = temp;
 }
 
 void SinglyLinkedList::push(int new_value){
@@ -198,7 +223,7 @@ void SinglyLinkedList::delete_node_recursive(int value, Node*& node = head){
         return;
     }
 
-    delete_node_recursive(value, node->next);
+    delete_node_recursive(value, *(node->next));
 }
 
 void SinglyLinkedList::delete_nth_node(int position){
