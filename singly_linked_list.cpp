@@ -31,6 +31,8 @@ class SinglyLinkedList{
         // inserts a new node on the front of the list.
         void push(int);
 
+        void append(int);
+
         void print_list();
 
         void delete_node(int);
@@ -57,6 +59,26 @@ void SinglyLinkedList::push(int new_value){
     new_node->next = head;
 
     head = new_node;
+    
+    return;
+}
+
+void SinglyLinkedList::append(int value){
+    Node* new_node = new Node();
+
+    if (head == NULL){
+        head = new_node;
+        return;
+    }
+
+    Node* last_node = head;
+    while (last_node->next != NULL){
+        last_node = last_node->next;
+    }
+
+    last_node->next = new_node;
+
+    return;
 }
 
 void SinglyLinkedList::print_list(){
