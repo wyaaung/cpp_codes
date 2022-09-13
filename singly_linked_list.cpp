@@ -35,6 +35,8 @@ class SinglyLinkedList{
 
         void delete_node(int);
 
+        void delete_node_recursive(int);
+
         void delete_nth_node(int);
 
         int get_count();
@@ -91,6 +93,22 @@ void SinglyLinkedList::delete_node(int value){
     prev->next = temp->next;
 
     delete temp;
+}
+
+void SinglyLinkedList::delete_node_recursive(int value, Node*& node = head){
+    if (head == NULL) {
+        cout << "List empty" << endl;
+        return;
+    }
+
+    if (head->value == value){
+        Node* temp = head;
+        head = head->next;
+        delete(temp);
+        return;
+    }
+
+    delete_node_recursive(value, node->next);
 }
 
 void SinglyLinkedList::delete_nth_node(int position){
