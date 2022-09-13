@@ -41,7 +41,7 @@ class SinglyLinkedList{
 
         int get_count();
 
-
+        bool search(int);
 };
 
 
@@ -146,6 +146,18 @@ int SinglyLinkedList::get_count(){
     }
 
     return count;
+}
+
+bool SinglyLinkedList::search(int value){
+    Node* current = head;
+
+    while (current != NULL){
+        if (current->value == value){
+            return true;
+        }
+    }
+
+    return false;
 }
 
 int main() {
