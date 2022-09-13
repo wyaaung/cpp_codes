@@ -43,6 +43,8 @@ class SinglyLinkedList{
 
         int get_count();
 
+        int get_count(int);
+
         bool search(int);
 
         Node* get_nth_node(int);
@@ -170,6 +172,21 @@ int SinglyLinkedList::get_count(){
 
     while (temp != NULL){
         count++;
+        temp = temp->next;
+    }
+
+    return count;
+}
+
+int SinglyLinkedList::get_count(int value){
+    int count = 0;
+
+    Node* temp = head;
+
+    while (temp != NULL){
+        if (temp->value == value){
+            count++;
+        }
         temp = temp->next;
     }
 
