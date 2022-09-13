@@ -23,11 +23,11 @@ class Node {
 // Singly Linked List
 class SinglyLinkedList{
     Node* head;
-    
+
     public:
 
         SinglyLinkedList() { head = NULL; }
-        
+
         // inserts a new node on the front of the list.
         void push(int);
 
@@ -44,6 +44,8 @@ class SinglyLinkedList{
         bool search(int);
 
         Node* get_nth_node(int);
+
+        Node* get_nth_from_last(int);
 };
 
 
@@ -61,7 +63,7 @@ void SinglyLinkedList::print_list(){
     Node* temp = head;
 
     if (head == NULL) {
-        cout << "List empty" << endl;
+        cout << "List empty" << "\n";
         return;
     }
 
@@ -99,7 +101,7 @@ void SinglyLinkedList::delete_node(int value){
 
 void SinglyLinkedList::delete_node_recursive(int value, Node*& node = head){
     if (head == NULL) {
-        cout << "List empty" << endl;
+        cout << "List empty" << "\n";
         return;
     }
 
@@ -175,6 +177,34 @@ Node* SinglyLinkedList::get_nth_node(int position){
     }
 
     return NULL;
+}
+
+Node* SinglyLinkedList::get_nth_from_last(int position){
+    if (head == NULL){
+        cout << "List is empty" << "\n";
+        return;
+    }
+
+    Node* main_ptr = head;
+    Node* ref_ptr = head;
+
+    for (int i = 0; i < position; i++){
+        ref_ptr = ref_ptr->next;
+        if (ref_ptr == NULL){
+            cout << position 
+                 << " is greater than number of nodes in the list"
+                 << "\n";
+            
+            return;
+        }
+    }
+
+    while (ref_ptr != NULL && ref_ptr->next != NULL){
+        ref_ptr = ref_ptr->next;
+        main_ptr = main_ptr->next;
+    }
+
+    return main_ptr;
 }
 
 int main() {
