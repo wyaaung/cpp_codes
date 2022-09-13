@@ -48,6 +48,8 @@ class SinglyLinkedList{
         Node* get_nth_node(int);
 
         Node* get_nth_from_last(int);
+
+        Node* get_middle_node();
 };
 
 
@@ -228,6 +230,23 @@ Node* SinglyLinkedList::get_nth_from_last(int position){
 
     return main_ptr;
 }
+
+Node* SinglyLinkedList::get_middle_node(){
+    if (head == NULL){
+        return head;
+    }
+
+    Node* slow_ptr = head;
+    Node* fast_ptr = head;
+
+    while (fast_ptr != NULL && fast_ptr->next != NULL){
+        fast_ptr = fast_ptr->next->next;
+        slow_ptr = slow_ptr->next;
+    }
+
+    return slow_ptr;
+}
+
 
 int main() {
     SinglyLinkedList list;
