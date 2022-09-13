@@ -65,6 +65,30 @@ void SinglyLinkedList::print_list(){
     cout << "\n";
 }
 
+void SinglyLinkedList::delete_node(int value){
+    Node* temp = head;
+    Node* prev = NULL;
+
+    if (temp != NULL && temp->value == value){
+        *head = temp->next;
+        delete temp;
+        return;
+    }
+
+    while (temp != NULL && temp->value != value){
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == NULL){
+        return;
+    }
+
+    prev->next = temp->next;
+
+    delete temp;
+}
+
 int main() {
     SinglyLinkedList list;
   
