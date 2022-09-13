@@ -47,6 +47,8 @@ class SinglyLinkedList{
 
         bool search(int);
 
+        bool has_loop();
+
         Node* get_nth_node(int);
 
         Node* get_nth_from_last(int);
@@ -198,6 +200,22 @@ bool SinglyLinkedList::search(int value){
 
     while (current != NULL){
         if (current->value == value){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool SinglyLinkedList::has_loop(){
+    // Floyd's Cycle-Finding Algorithm
+    Node* slow_ptr = head, fast_ptr = head;
+
+    while (slow_ptr != NULL && fast_ptr != NULL && fast_ptr->next != NULL){
+        slow_ptr = slow_ptr->next;
+        fast_ptr = fast_ptr->next->next;
+        
+        if (slow_ptr == fast_ptr){
             return true;
         }
     }
