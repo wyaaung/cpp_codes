@@ -45,6 +45,8 @@ class SinglyLinkedList{
 
         int get_count(int);
 
+        int get_count_loop();
+
         bool search(int);
 
         bool has_loop();
@@ -193,6 +195,33 @@ int SinglyLinkedList::get_count(int value){
     }
 
     return count;
+}
+
+int SinglyLinkedList::get_count_loop(){
+    if (head == NULL){
+        return 0;
+    }
+
+    Node* slow_ptr = head, fast_ptr = head;
+
+    while (slow_ptr != NULL && fast_ptr != NULL && fast_ptr->next != NULL){
+        slow_ptr = slow_ptr->next;
+        fast_ptr = fast_ptr->next->next;
+
+        if (slow_ptr == fast_ptr){
+            int count = 1;
+            slow_ptr = slow_ptr->next;
+
+            while (slow_ptr != fast_ptr){
+                count++;
+                slow_ptr = slow_ptr->next;
+            }
+
+            return count;
+        }
+    }
+
+    return 0;
 }
 
 bool SinglyLinkedList::search(int value){
