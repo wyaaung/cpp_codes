@@ -38,6 +38,8 @@ class SinglyLinkedList{
 
         void swap_nodes(int, int);
 
+        void move_to_front();
+
         void push(int); // inserts a new node on the front of the list.
 
         void append(int);
@@ -138,6 +140,23 @@ void SinglyLinkedList::swap_nodes(int first, int second){
     // Node* temp = curr_second->next;
     // curr_second->next = curr_first->next;
     // curr_first->next = temp;
+}
+
+void SinglyLinkedList::move_to_front(){
+    if (head == NULL || head->next == NULL){
+        return;
+    }
+
+    Node* last_node = head, second_last = NULL;
+
+    while (last_node->next != NULL){
+        second_last = last_node;
+        last_node = last_node->next;
+    }
+
+    second_last->next = NULL;
+    last_node->next = head;
+    head = last_node;
 }
 
 void SinglyLinkedList::push(int new_value){
