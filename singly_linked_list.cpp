@@ -4,7 +4,7 @@ using namespace std;
 class Node {
     public:
         int value;
-        Node* next;
+        Node *next;
 
         // Default constructor
         Node(){
@@ -20,7 +20,7 @@ class Node {
 };
 
 void swap(Node*& first, Node*& second){
-    Node* temp = first;
+    Node *temp = first;
     first = second;
     second = temp;
 }
@@ -28,7 +28,7 @@ void swap(Node*& first, Node*& second){
 
 // Singly Linked List
 class SinglyLinkedList{
-    Node* head;
+    Node *head;
 
     public:
 
@@ -49,8 +49,6 @@ class SinglyLinkedList{
         void print_list();
 
         void delete_node(int);
-
-        void delete_node_recursive(int);
 
         void delete_nth_node(int);
 
@@ -73,9 +71,9 @@ class SinglyLinkedList{
 
 
 void SinglyLinkedList::reverse(){
-    Node* prev = NULL;
-    Node* current = head;
-    Node* next;
+    Node *prev = NULL;
+    Node *current = head;
+    Node *next;
 
     while (current != NULL){
         next = current->next;
@@ -88,12 +86,11 @@ void SinglyLinkedList::reverse(){
 }
 
 void SinglyLinkedList::reverse(int n){
-    if (head == NULL || k == 1){
+    if (head == NULL || n == 1){
         return;
     }
 
     int length = get_count();
-
 }
 
 void SinglyLinkedList::swap_nodes(int first, int second){
@@ -101,7 +98,7 @@ void SinglyLinkedList::swap_nodes(int first, int second){
         return;
     }
 
-    Node* node_one = NULL, node_two = NULL, current = head;
+    Node *node_one = NULL, *node_two = NULL, *current = head;
     
     while (current != NULL){
         if (current->value == first){
@@ -119,38 +116,6 @@ void SinglyLinkedList::swap_nodes(int first, int second){
         swap(*node_one, *node_two);
         swap(*(node_one->next), *(node_two->next));
     }
-
-    // Node* prev_first = NULL, curr_first = head;
-    // while (curr_first != NULL && curr_first->value != first){
-    //     prev_first = curr_first
-    //     curr_first = curr_first->next;
-    // }
-
-    // Node* prev_second = NULL, curr_second = head;
-    // while (curr_second != NULL && curr_second->value != second){
-    //     prev_second = curr_second;
-    //     curr_second = curr_second->next;
-    // }
-
-    // if (curr_first == NULL || curr_second == NULL){
-    //     return;
-    // }
-
-    // if (prev_first != NULL){
-    //     prev_first->next = curr_second;
-    // }else{
-    //     head = curr_second;
-    // }
-
-    // if (prev_second != NULL){
-    //     prev_second->next = curr_first;
-    // }else{
-    //     head = curr_first;
-    // }
-
-    // Node* temp = curr_second->next;
-    // curr_second->next = curr_first->next;
-    // curr_first->next = temp;
 }
 
 void SinglyLinkedList::move_to_front(){
@@ -158,7 +123,7 @@ void SinglyLinkedList::move_to_front(){
         return;
     }
 
-    Node* last_node = head, second_last = NULL;
+    Node *last_node = head, *second_last = NULL;
 
     while (last_node->next != NULL){
         second_last = last_node;
@@ -171,7 +136,7 @@ void SinglyLinkedList::move_to_front(){
 }
 
 void SinglyLinkedList::push(int new_value){
-    Node* new_node = new Node();
+    Node *new_node = new Node();
 
     new_node->value = new_value;
 
@@ -183,7 +148,7 @@ void SinglyLinkedList::push(int new_value){
 }
 
 void SinglyLinkedList::append(int value){
-    Node* new_node = new Node();
+    Node *new_node = new Node(value);
 
     if (head == NULL){
         head = new_node;
@@ -201,7 +166,7 @@ void SinglyLinkedList::append(int value){
 }
 
 void SinglyLinkedList::print_list(){
-    Node* temp = head;
+    Node *temp = head;
 
     if (head == NULL) {
         cout << "List empty" << "\n";
@@ -210,18 +175,18 @@ void SinglyLinkedList::print_list(){
 
     // Traverse the list.
     while (temp != NULL) {
-        cout << temp->value << "->";
+        cout << " -> " << temp->value;
         temp = temp->next;
     }
     cout << "\n";
 }
 
 void SinglyLinkedList::delete_node(int value){
-    Node* temp = head;
-    Node* prev = NULL;
+    Node *temp = head;
+    Node *prev = NULL;
 
     if (temp != NULL && temp->value == value){
-        *head = temp->next;
+        head = temp->next;
         delete temp;
         return;
     }
@@ -240,28 +205,12 @@ void SinglyLinkedList::delete_node(int value){
     delete temp;
 }
 
-void SinglyLinkedList::delete_node_recursive(int value, Node*& node = head){
-    if (head == NULL) {
-        cout << "List empty" << "\n";
-        return;
-    }
-
-    if (head->value == value){
-        Node* temp = head;
-        head = head->next;
-        delete(temp);
-        return;
-    }
-
-    delete_node_recursive(value, *(node->next));
-}
-
 void SinglyLinkedList::delete_nth_node(int position){
-    Node* temp = head;
-    Node* prev = NULL;
+    Node *temp = head;
+    Node *prev = NULL;
 
-    if (position == 1){
-        *head == head->next;
+    if (position == 0){
+        head = head->next;
         free(temp);
         return;
     }
@@ -283,7 +232,7 @@ void SinglyLinkedList::delete_nth_node(int position){
 int SinglyLinkedList::get_count(){
     int count = 0;
 
-    Node* temp = head;
+    Node *temp = head;
 
     while (temp != NULL){
         count++;
@@ -296,7 +245,7 @@ int SinglyLinkedList::get_count(){
 int SinglyLinkedList::get_count(int value){
     int count = 0;
 
-    Node* temp = head;
+    Node *temp = head;
 
     while (temp != NULL){
         if (temp->value == value){
@@ -313,7 +262,7 @@ int SinglyLinkedList::get_count_loop(){
         return 0;
     }
 
-    Node* slow_ptr = head, fast_ptr = head;
+    Node *slow_ptr = head, *fast_ptr = head;
 
     while (slow_ptr != NULL && fast_ptr != NULL && fast_ptr->next != NULL){
         slow_ptr = slow_ptr->next;
@@ -336,7 +285,7 @@ int SinglyLinkedList::get_count_loop(){
 }
 
 bool SinglyLinkedList::search(int value){
-    Node* current = head;
+    Node *current = head;
 
     while (current != NULL){
         if (current->value == value){
@@ -349,7 +298,7 @@ bool SinglyLinkedList::search(int value){
 
 bool SinglyLinkedList::has_loop(){
     // Floyd's Cycle-Finding Algorithm
-    Node* slow_ptr = head, fast_ptr = head;
+    Node *slow_ptr = head, *fast_ptr = head;
 
     while (slow_ptr != NULL && fast_ptr != NULL && fast_ptr->next != NULL){
         slow_ptr = slow_ptr->next;
@@ -364,7 +313,7 @@ bool SinglyLinkedList::has_loop(){
 }
 
 Node* SinglyLinkedList::get_nth_node(int position){
-    Node* current = head;
+    Node *current = head;
 
     int count = 0;
     while (current != NULL){
@@ -381,20 +330,20 @@ Node* SinglyLinkedList::get_nth_node(int position){
 Node* SinglyLinkedList::get_nth_from_last(int position){
     if (head == NULL){
         cout << "List is empty" << "\n";
-        return;
+        return head;
     }
 
-    Node* main_ptr = head;
-    Node* ref_ptr = head;
+    Node *main_ptr = head;
+    Node *ref_ptr = head;
 
-    for (int i = 0; i < position; i++){
+    for (int i = 1; i < position; i++){
         ref_ptr = ref_ptr->next;
         if (ref_ptr == NULL){
             cout << position 
                  << " is greater than number of nodes in the list"
                  << "\n";
             
-            return;
+            return NULL;
         }
     }
 
@@ -411,8 +360,8 @@ Node* SinglyLinkedList::get_middle_node(){
         return head;
     }
 
-    Node* slow_ptr = head;
-    Node* fast_ptr = head;
+    Node *slow_ptr = head;
+    Node *fast_ptr = head;
 
     while (fast_ptr != NULL && fast_ptr->next != NULL){
         fast_ptr = fast_ptr->next->next;
@@ -427,10 +376,40 @@ int main() {
     SinglyLinkedList list;
   
     // Inserting nodes
-    list.push(1);
-    list.push(2);
-    list.push(3);
-    list.push(4);
+    for (int i = 1; i < 11; i++){
+        list.append(i);
+    }
 
+    cout << "Initialised Singly Linked List" << "\n";
     list.print_list();
+    cout << "The number of nodes in the linked list is: " << list.get_count() << "\n";
+
+    cout << "Reversing the list" << "\n";
+    list.reverse();
+    list.print_list();
+
+    cout << "Swapping Nodes 2 and 9" << "\n";
+    list.swap_nodes(2,9);
+    list.print_list();
+
+    cout << "Moving the last node to front" << "\n";
+    list.move_to_front();
+    list.print_list();
+
+    cout << "Deleting the first node" << "\n";
+    list.delete_nth_node(0);
+    list.print_list();
+
+    cout << "Deleting the 4 node" << "\n";
+    list.delete_node(4);
+    list.print_list();
+    cout << "The number of nodes in the linked list is: " << list.get_count() << "\n";
+
+    cout << "The number of nodes with value 3 is: " << list.get_count(3) << "\n";
+
+    cout << "The third node from the last node is: " << list.get_nth_from_last(3)->value << "\n";
+
+    cout << "The third node from the head node is: " << list.get_nth_node(3)->value << "\n";
+
+    cout << "The middle node from the head node is: " << list.get_middle_node()->value << "\n";
 }
