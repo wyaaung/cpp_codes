@@ -24,13 +24,17 @@ class Singleton{
         static Singleton *get_instance();
 };
 
+Singleton* Singleton::singleton_ = NULL;
+
 Singleton *Singleton::get_instance(){
-    if (singleton_ == nullptr){
+    if (singleton_ == NULL){
         singleton_ = new Singleton();
     }
     
     return singleton_;
 }
+
+Singleton::Singleton(){}
 
 int main(){
     Singleton* s1 = s1->get_instance();
@@ -38,7 +42,7 @@ int main(){
 
     bool check = s1 == s2;
 
-    cout << (check ? "True" : "False") << "\n";
+    cout << (check ? "They are the same object." : "They are not the same object.") << "\n";
     
     return 0;
 }
