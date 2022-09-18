@@ -4,7 +4,7 @@ using namespace std;
 
 class Singleton{
     protected:
-        static Singleton* singleton_;
+        static Singleton* singleton;
         /**
          * Constructor in protected.
          */
@@ -20,25 +20,26 @@ class Singleton{
          */
         void operator=(const Singleton &) = delete;
 
+        ~Singleton(){};
 
-        static Singleton *get_instance();
+        static Singleton *getInstance();
 };
 
-Singleton* Singleton::singleton_ = NULL;
+Singleton* Singleton::singleton = NULL;
 
-Singleton *Singleton::get_instance(){
-    if (singleton_ == NULL){
-        singleton_ = new Singleton();
+Singleton *Singleton::getInstance(){
+    if (singleton == NULL){
+        singleton = new Singleton();
     }
     
-    return singleton_;
+    return singleton;
 }
 
 Singleton::Singleton(){}
 
 int main(){
-    Singleton* s1 = s1->get_instance();
-    Singleton* s2 = s2->get_instance();
+    Singleton* s1 = s1->getInstance();
+    Singleton* s2 = s2->getInstance();
 
     bool check = s1 == s2;
 
