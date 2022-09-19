@@ -44,6 +44,8 @@ int main(){
     bool check = s1 == s2;
 
     cout << (check ? "They are the same object." : "They are not the same object.") << "\n";
-    
+
+    delete s1;
+
     return 0;
 }

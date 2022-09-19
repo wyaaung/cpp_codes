@@ -50,5 +50,8 @@ int main(){
     LoggerFactory* xmlFactory = new XMLFactory();
     xmlFactory->getLogger()->log();
 
+    delete xmlFactory;
+    delete loggerFactory;
+
     return 0;
 }

@@ -42,6 +42,8 @@ class HouseBuilder {
         virtual void buildRoof() = 0;
         virtual void buildInterior() = 0;
         virtual House *getHouse() = 0;
+
+        virtual ~HouseBuilder(){};
 };
 
 class CustomHouseBuilder : public HouseBuilder {
@@ -108,6 +110,10 @@ int main(){
     House *house = engineer->getHouse();
 
     cout << "Builder Constructed: " << house << "\n";
+
+    delete house;
+    delete engineer;
+    delete builder;
 
     return 0;
 }

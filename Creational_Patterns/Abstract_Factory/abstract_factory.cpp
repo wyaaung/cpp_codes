@@ -50,6 +50,8 @@ class GUIBuilder {
     public:
         virtual Button  *createButton() const = 0;
         virtual Label *createLabel() const = 0;
+
+        virtual ~GUIBuilder(){};
 };
 
 class WindowsGUIBuilder : public GUIBuilder{
@@ -79,6 +81,8 @@ int main(){
     GUIBuilder *gui = new WindowsGUIBuilder();
     gui->createButton()->print();
     gui->createLabel()->print();
+
+    delete gui;
 
     return 0;
 }
