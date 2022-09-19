@@ -3,6 +3,18 @@
 
 using namespace std;
 
+/**
+ * @file composite.cpp
+ * 
+ * @author Wai Yan Aung
+ * 
+ * Composite Pattern should be used when clients need to ignore the difference between compositions of objects and individual objects. 
+ * If programmers find that they are using multiple objects in the same way, and often have nearly identical code to handle each of them, 
+ * then composite is a good choice, it is less complex in this situation to treat primitives and composites as homogeneous.
+ * 
+ */
+
+
 class Employee {
     protected:
         string name;
