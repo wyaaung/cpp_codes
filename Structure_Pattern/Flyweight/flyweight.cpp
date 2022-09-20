@@ -33,20 +33,19 @@ class TreeType {
 class Tree {
     protected:
         int x, y;
-        TreeType treeType;
+        TreeType *treeType;
     
     public:
-        Tree(int x, int y, TreeType treeType) {
+        Tree(int x, int y, TreeType *&treeType) {
             this->x = x;
             this->y = y;
             this->treeType = treeType;
         }
 
         void draw(){
-            this->treeType.draw();
+            this->treeType->draw(this->x, this->y);
         }
 };
-
 
 int main(){
     return 0;
