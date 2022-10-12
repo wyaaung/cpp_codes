@@ -2,6 +2,11 @@
 #include <vector>
 
 using namespace std;
+/**
+ * @brief Generate the subarray of the given array
+ * 
+ * In general, for an array of size n, there are n*(n+1) / 2 non empty subarrays
+ */
 
 void generateSubArrays(vector<int> arr);
 
