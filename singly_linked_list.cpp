@@ -373,7 +373,7 @@ Node* SinglyLinkedList::get_middle_node(){
 }
 
 
-int main() {
+int main(int argc, char const *argv[]) {
     SinglyLinkedList list;
   
     // Inserting nodes

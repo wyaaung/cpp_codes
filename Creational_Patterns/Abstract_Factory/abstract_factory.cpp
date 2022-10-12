@@ -77,7 +77,7 @@ class MacintoshGUIBuilder : public GUIBuilder{
 };
 
 
-int main(){
+int main(int argc, char const *argv[]){
     GUIBuilder *gui = new WindowsGUIBuilder();
     gui->createButton()->print();
     gui->createLabel()->print();

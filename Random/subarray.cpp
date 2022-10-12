@@ -52,6 +52,7 @@ void generateSubArrayRecursive(vector<int> arr, int start, int end){
     }
 
     else{
+        // Print the subarray and increase the start index
         cout << "[";
         for (int i = start; i <= end; i++){
             cout << arr[i] << " ";
