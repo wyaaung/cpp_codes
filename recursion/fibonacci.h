@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define unsigned int uint
+#define uint unsigned int
 
 using namespace std;
 

@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// 2 divides (6k + 0), (6k + 2), and (6k + 4) and 3 divides (6k + 3)
 // Time Complexity: √n
 bool isPrimeSchoolMethod(int n);
 
