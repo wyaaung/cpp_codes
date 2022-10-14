@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <time.h>
 
 using namespace std;
 
@@ -34,16 +35,20 @@ void bubbleSort(vector<int> &arr){
 int main(int argc, char const *argv[])
 {
     vector<int> intVector;
-    for (int i = 0; i < 100; i++){
-        intVector.push_back(100 - i);
+    for (int i = 0; i < 100000; i++){
+        intVector.push_back(100000 - i);
     }
     cout << "Before Sorting: \n";
     display(intVector);
 
+    clock_t start = clock(); 
     bubbleSort(intVector);
+    clock_t end = clock();
 
     cout << "After Sorting: \n";
     display(intVector);
+
+    cout << "Sorting Time: " << ((float)(end - start) / CLOCKS_PER_SEC) << "\n";
 
     return 0;
 }
