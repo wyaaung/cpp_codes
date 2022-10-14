@@ -43,7 +43,7 @@ class XMLFactory : public LoggerFactory{
         }
 };
 
-int main(){
+int main(int argc, char const *argv[]){
     LoggerFactory* loggerFactory = new ConsoleFactory();
     loggerFactory->getLogger()->log();
 

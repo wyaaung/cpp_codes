@@ -66,7 +66,7 @@ class Circle : public Shape {
         }
 };
 
-int main(){
+int main(int argc, char const *argv[]){
     DrawingAPI *draw = new SVGDrawerAPI();
 
     Shape *s = new Rectangle(draw);

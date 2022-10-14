@@ -37,7 +37,7 @@ Singleton *Singleton::getInstance(){
 
 Singleton::Singleton(){}
 
-int main(){
+int main(int argc, char const *argv[]){
     Singleton* s1 = s1->getInstance();
     Singleton* s2 = s2->getInstance();
 

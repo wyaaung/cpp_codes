@@ -99,7 +99,7 @@ class Engineer {
 };
 
 
-int main(){
+int main(int argc, char const *argv[]){
 
     HouseBuilder *builder = new CustomHouseBuilder();
 

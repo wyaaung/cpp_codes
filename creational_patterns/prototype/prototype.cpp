@@ -70,7 +70,7 @@ class ShapeFactory {
 };
 
 
-int main(){
+int main(int argc, char const *argv[]){
     ShapeFactory *shapeFactory = new ShapeFactory();
 
     Shape *shape = shapeFactory->createShape(Type::RECTANGLE);

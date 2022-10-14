@@ -92,7 +92,7 @@ class Directory : public Employee {
         }
 };
 
-int main(){
+int main(int argc, char const *argv[]){
     Developer *d1 = new Developer("Developer 1", 1, "Developer");
     Developer *d2 = new Developer("Developer 2", 2, "Developer");
 

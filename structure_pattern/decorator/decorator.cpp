@@ -96,7 +96,7 @@ class Compression : public Modifier {
 };
 
 
-int main(){
+int main(int argc, char const *argv[]){
     DataSource *simple = new FileDataSource("File One");
 
     Modifier *encryption = new Encryption(simple);

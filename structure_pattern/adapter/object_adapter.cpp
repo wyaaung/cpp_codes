@@ -26,7 +26,7 @@ class ObjectAdapter : public Framework{
         }
 };
 
-int main(){
+int main(int argc, char const *argv[]){
 
     Framework *framework = new ObjectAdapter();
     framework->add(30);
