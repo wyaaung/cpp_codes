@@ -13,7 +13,13 @@ void generateSubArrays(vector<int> arr);
 void generateSubArrayRecursive(vector<int> arr, int start, int end);
 
 // Time Complexity of the below algorithm is O(n^3)
-void maximumSumofSubArraysOne(vector<int> arr);
+void maximumSumOfSubArraysOne(vector<int> arr);
+
+// Time Complexity of the below algorithm is O(n^2)
+void maximumSumOfSubArraysTwo(vector<int> arr);
+
+// Time Complexity of the below algorithm is O(n)
+void maximumSumOfSubArraysThree(vector<int> arr);
 
 int main(int argc, char const *argv[])
 {
@@ -26,7 +32,13 @@ int main(int argc, char const *argv[])
     generateSubArrayRecursive(arr, 0, 0);
     
     cout << "\nSum of Maximum Subarray (O(n^3))" << "\n";
-    maximumSumofSubArraysOne(arr);
+    maximumSumOfSubArraysOne(arr);
+
+    cout << "\nSum of Maximum Subarray (O(n^2))" << "\n";
+    maximumSumOfSubArraysTwo(arr);
+
+    cout << "\nSum of Maximum Subarray (O(n^2))" << "\n";
+    maximumSumOfSubArraysThree(arr);
 
     return 0;
 }
@@ -76,13 +88,14 @@ void generateSubArrayRecursive(vector<int> arr, int start, int end){
     }
 }
 
-void maximumSumofSubArraysOne(vector<int> arr){
+void maximumSumOfSubArraysOne(vector<int> arr){
     // Number of items in vector array.
     int n = arr.size();
     int best = 0;
 
     // Starting Element
     for (int start = 0; start < n; start++){
+        // Ending Element
         for (int end = start; end < n; end++){
             int sum = 0;
             cout << "Sum of [";
@@ -99,6 +112,37 @@ void maximumSumofSubArraysOne(vector<int> arr){
             cout << "] = " << sum << "\n";
             best = max(best, sum);
         }
+    }
+
+    cout << "Maximum Sum of Subarray = " << best << "\n";
+}
+
+void maximumSumOfSubArraysTwo(vector<int> arr){
+    // Number of items in vector array.
+    int n = arr.size();
+    int best = 0;
+
+    // Starting Element
+    for (int start = 0; start < n; start++){
+        // Ending Element
+        int sum = 0;
+        for (int end = start; end < n; end++){
+            sum += arr[end];
+            best = max(sum, best);
+        }
+    }
+
+    cout << "Maximum Sum of Subarray = " << best << "\n";
+}
+
+void maximumSumOfSubArraysThree(vector<int> arr){
+    // Number of items in vector array.
+    int n = arr.size();
+    int best = 0, sum = 0;
+
+    for (int item = 0; item < n; item++){
+        sum = max(arr[item], sum + arr[item]);
+        best = max(best, sum);
     }
 
     cout << "Maximum Sum of Subarray = " << best << "\n";
