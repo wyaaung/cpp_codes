@@ -19,22 +19,28 @@ void swap(int *x, int *y){
     *y = temp;
 }
 
-void insertionSort(vector<int> &arr){
-    int key, j;
-    for (int i = 1; i < arr.size(); i++){
-        key = arr[i];
-        j = i - 1;
 
-        // Move elements of arr[0..i-1],  
-        // that are greater than key, to one 
-        // position ahead of their 
-        // current position
-        while(j >= 0 && arr[j] > key){
-            arr[j + 1] = key;
-            j--;
-        }
-        arr[j + 1] = key;
+void insertionSortRecursive(vector<int> &arr, int end){
+    if (end <= 1){
+        return;
     }
+
+    // Sort first n - 1 elements
+    insertionSortRecursive(arr, end - 1);
+
+    // Insert last element at its correct position in sorted array
+    int key = arr[end - 1];
+    int j = end - 2;
+
+    // Move elements of arr[0..i-1],  
+    // that are greater than key, to one 
+    // position ahead of their 
+    // current position
+    while(j >= 0 && arr[j] > key){
+        arr[j + 1] = arr[j];
+        j--;
+    }
+    arr[j + 1] = key;
 }
 
 int main(int argc, char const *argv[])
@@ -47,7 +53,7 @@ int main(int argc, char const *argv[])
     display(intVector);
 
     clock_t start = clock(); 
-    insertionSort(intVector);
+    insertionSortRecursive(intVector, intVector.size());
     clock_t end = clock();
 
     cout << "After Sorting: \n";
