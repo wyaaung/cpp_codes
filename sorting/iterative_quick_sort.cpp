@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#define SIZE 100000
+#define SIZE 10
 
 using namespace std;
 
@@ -40,14 +40,32 @@ int partition(vector<int> &arr, int start, int end){
 }
 
 void quickSort(vector<int> &arr, int start, int end){
-    if (start < end){
+    // Initializing stack
+    int stack[arr.size()];
+
+    // Initialize top of the stack
+    int top = -1;
+
+    stack[++top] = start;
+    stack[++top] = end;
+
+    while (top >= 0){
+        end = stack[top--];
+        start = stack[top--];
+
+        // Set pivot element at its correct position
+        // in sorted array
         int pivotIndex = partition(arr, start, end);
 
-        // Separately sort elements before
-        // partition and after partition
+        if (pivotIndex - 1 > start){
+            stack[++top] = start;
+            stack[++top] = pivotIndex - 1;
+        }
 
-        quickSort(arr, start, pivotIndex - 1);
-        quickSort(arr, pivotIndex + 1, end);
+        if (pivotIndex + 1 < end){
+            stack[++top] = pivotIndex + 1;
+            stack[++top] = end;
+        }
     }
 }
 

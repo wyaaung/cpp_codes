@@ -2,6 +2,7 @@
 #include <vector>
 
 #define uint unsigned int
+#define SIZE 100000
 
 using namespace std;
 
@@ -56,8 +57,8 @@ void mergeSort(vector<int> &arr){
 int main(int argc, char const *argv[])
 {
     vector<int> intVector;
-    for (int i = 0; i < 100000; i++){
-        intVector.push_back(100000 - i);
+    for (int i = 0; i < SIZE; i++){
+        intVector.push_back(SIZE - i);
     }
     cout << "Before Sorting: \n";
     display(intVector);

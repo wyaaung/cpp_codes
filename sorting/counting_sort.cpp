@@ -9,8 +9,8 @@
 #include <vector>
 #include <cstdlib>
 
-
 #define uint unsigned int
+#define SIZE 100000
 
 using namespace std;
 
@@ -54,7 +54,7 @@ void countSort(vector<int> &arr){
 int main(int argc, char const *argv[])
 {
     vector<int> intVector;
-    for (int i = 0; i < 100000; i++){
+    for (int i = 0; i < SIZE; i++){
         intVector.push_back(rand() % 1000);
     }
     cout << "Before Sorting: \n";
