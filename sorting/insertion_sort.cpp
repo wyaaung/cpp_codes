@@ -13,12 +13,6 @@ void display(vector<int> &arr){
     cout << "]\n";
 }
 
-void swap(int *x, int *y){
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
 void insertionSort(vector<int> &arr){
     int key, j;
 

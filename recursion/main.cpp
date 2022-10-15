@@ -19,7 +19,7 @@ int main(int argc, char const *argv[]){
     char s1[100] = "Hello, World!";
     char s2[100];
 
-    myCopy(s1, s2);
+    myCopy(s1, s2, 0);
 
     cout << s2 << "\n";
 
