@@ -22,7 +22,7 @@ int binarySearchIterative(vector<int> &arr, int search){
         }
     }
     
-    // Return -1 when there is no element in the array.
+    // Return -1 when there is no such element in the array.
     return -1;
 }
 

@@ -2,6 +2,7 @@
 #include <vector>
 
 #define SIZE 100000
+
 /**
  * A fast alternative to a binary search when the elements are uniformly distributed. This
  * algorithm runs in a time complexity of ~O(log(log(n))).
@@ -43,7 +44,7 @@ int main(int argc, char const *argv[])
 
     cout << "Value:" <<searchingValue << " is found at index: " << index << ".\n";
 
-    cout << "Sorting Time: " << ((float)(end - start) / CLOCKS_PER_SEC) << "\n";
+    cout << "Searching Time: " << ((float)(end - start) / CLOCKS_PER_SEC) << "\n";
 
     return 0;
 }
