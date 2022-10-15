@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <time.h>
 
 #define SIZE 100000
 

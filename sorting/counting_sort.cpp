@@ -7,7 +7,6 @@
  */
 #include <iostream>
 #include <vector>
-#include <cstdlib>
 
 #define uint unsigned int
 #define SIZE 100000

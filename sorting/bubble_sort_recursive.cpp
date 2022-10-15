@@ -19,28 +19,29 @@ void swap(int *x, int *y){
     *y = temp;
 }
 
-
-void insertionSortRecursive(vector<int> &arr, int end){
-    if (end <= 1){
+void bubbleSortRecursive(vector<int> &arr, int n){
+    if (n <= 1){
         return;
     }
 
-    // Sort first n - 1 elements
-    insertionSortRecursive(arr, end - 1);
+    int count = 0;
 
-    // Insert last element at its correct position in sorted array
-    int key = arr[end - 1];
-    int j = end - 2;
+    // One pass of bubble sort. After
+    // this pass, the largest element
+    // is moved (or bubbled) to end.
 
-    // Move elements of arr[0..i-1],  
-    // that are greater than key, to one 
-    // position ahead of their 
-    // current position
-    while(j >= 0 && arr[j] > key){
-        arr[j + 1] = arr[j];
-        j--;
+    for (int i = 0; i < n - 1; i++){
+        if (arr[i] > arr [i + 1]){
+            swap(arr[i], arr[i + 1]);
+            count++;
+        }
     }
-    arr[j + 1] = key;
+
+    if (count == 0){
+        return;
+    }
+
+    bubbleSortRecursive(arr, n - 1);
 }
 
 int main(int argc, char const *argv[])
@@ -53,7 +54,7 @@ int main(int argc, char const *argv[])
     display(intVector);
 
     clock_t start = clock(); 
-    insertionSortRecursive(intVector, SIZE);
+    bubbleSortRecursive(intVector, SIZE);
     clock_t end = clock();
 
     cout << "After Sorting: \n";
@@ -63,3 +64,4 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+
