@@ -43,6 +43,8 @@ int binarySearchRecursive(vector<int> &arr, int search, int start, int end){
         // Else the searching element exists in right side of the array
         return binarySearchRecursive(arr, search, start, mid - 1);
     }
+
+    return -1;
 }
 
 
@@ -53,10 +55,14 @@ int main(int argc, char const *argv[])
         intVector.push_back(i);
     }
 
-    int searchingValue = rand() % 10000;
+    int searchingValue = rand() % SIZE;
+    clock_t start = clock(); 
     int index = binarySearchIterative(intVector, searchingValue);
+    clock_t end = clock();
 
-    cout << searchingValue << " is found at index: " << index << ".\n";
+    cout << "Value:" <<searchingValue << " is found at index: " << index << ".\n";
+
+    cout << "Searching Time: " << ((float)(end - start) / CLOCKS_PER_SEC) << "\n";
 
     return 0;
 }
