@@ -40,7 +40,9 @@ void bubbleSortRecursive(vector<int> &arr, int n){
     if (count == 0){
         return;
     }
-
+    
+    // Largest element is fixed,
+    // recur for remaining array
     bubbleSortRecursive(arr, n - 1);
 }
 
