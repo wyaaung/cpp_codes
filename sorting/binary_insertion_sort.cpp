@@ -19,22 +19,40 @@ void swap(int *x, int *y){
     *y = temp;
 }
 
-void insertionSort(vector<int> &arr){
-    int key, j;
+// A binary search based function to find the position
+// where item should be inserted in arr[low..high]
+int binarySearch(vector<int> &arr, int search, int start, int end){
+    if (end <= start){
+        return (search > arr[start]) ? (start + 1) : start;
+    }
+
+    int mid = start + (end - start) / 2;
+
+    if (search == arr[mid]){
+        return mid + 1;
+    }
+
+    if (search < arr[mid]){
+        return binarySearch(arr, search, start, mid - 1);
+    }
+
+    return binarySearch(arr, search, mid + 1, end);
+}
+void binaryInsertionSort(vector<int> &arr){
+    int key, j, location;
 
     for (int i = 1; i < arr.size(); i++){
         key = arr[i];
         j = i - 1;
 
-        // Move elements of arr[0..i-1],  
-        // that are greater than key, to one 
-        // position ahead of their 
-        // current position
-        while(j >= 0 && arr[j] > key){
+        // find location where selected should be inseretd
+        location = binarySearch(arr, key, 0, j);
+
+        while (j >= location){
             arr[j + 1] = arr[j];
             j--;
         }
-        arr[j + 1] = key;
+        arr[location] = key;
     }
 }
 
@@ -48,7 +66,7 @@ int main(int argc, char const *argv[])
     display(intVector);
 
     clock_t start = clock(); 
-    insertionSort(intVector);
+    binaryInsertionSort(intVector);
     clock_t end = clock();
 
     cout << "After Sorting: \n";
