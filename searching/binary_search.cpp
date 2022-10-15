@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Returns an index in an array of the searching value
+// Returns an index in an array of the searching value, otherwise -1.
 int binarySearchIterative(vector<int> &arr, int search){
     int low = 0, high = arr.size() - 1;
 
@@ -22,7 +22,27 @@ int binarySearchIterative(vector<int> &arr, int search){
         }
     }
     
+    // Return -1 when there is no element in the array.
     return -1;
+}
+
+// Returns an index in an array of the searching value, otherwise -1.
+int binarySearchRecursive(vector<int> &arr, int search, int start, int end){
+    if (end >= 1){
+        int mid = start + (end - start) / 2;
+
+        if (search == arr[mid]){
+            return mid;
+        }
+
+        // If the searching element is smaller than mid, it can only be existed in right side of the array
+        if (search > arr[mid]){
+            return binarySearchRecursive(arr, search, mid + 1, end);
+        }
+
+        // Else the searching element exists in right side of the array
+        return binarySearchRecursive(arr, search, start, mid - 1);
+    }
 }
 
 
