@@ -1,27 +1,31 @@
-#include "intStack.h"
+#include "int_stack.h"
 
 IntegerStack::IntegerStack(int maxSize) {
     this->array = new int[maxSize];
 };
 
+IntegerStack::~IntegerStack(){
+    delete[] this->array;
+}
+
 int IntegerStack::size(){
-    return this->capacity;
+    return this->count;
 }
 
 bool IntegerStack::isEmpty() {
-    return (this->capacity == 0);
+    return (this->count == 0);
 }
 
 int IntegerStack::peek(){
-    return this->array[this->capacity - 1];
+    return this->array[this->count - 1];
 }
 
 void IntegerStack::push(int value){
-    this->array[this->capacity++] = value;
+    this->array[this->count++] = value;
 }
 
 int IntegerStack::pop(){
-    return this->array[--this->capacity];
+    return this->array[--this->count];
 }
 
 int main(int argc, char const *argv[])

@@ -11,7 +11,7 @@ class Queue{
         // return true/false on whether the queue is empty
         virtual bool isEmpty() = 0;
 
-        // return the number of elements in the stack
+        // return the number of elements in the queue
         virtual int size() = 0;
 
         // Peek the element off the queue without actually removing.
@@ -21,6 +21,5 @@ class Queue{
         virtual int isFull() = 0;
 
         // return the element at the head of the queue 
-        virtual int poll() = 0;
-
+        virtual int dequeue() = 0;
 };

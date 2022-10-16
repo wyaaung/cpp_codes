@@ -3,10 +3,12 @@
 class IntegerStack : public Stack<int> {
     private:
         int *array;
-        int capacity = 0;
+        int count = 0;
 
     public:
         IntegerStack(int maxSize);
+
+        ~IntegerStack();
 
         // return the number of elements in the stack
         int size();
