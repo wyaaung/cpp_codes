@@ -3,7 +3,7 @@
 class IntegerStack : public Stack<int> {
     private:
         int *array;
-        int pos = 0;
+        int capacity = 0;
 
     public:
         IntegerStack(int maxSize);

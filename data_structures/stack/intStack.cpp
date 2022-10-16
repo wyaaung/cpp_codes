@@ -5,23 +5,23 @@ IntegerStack::IntegerStack(int maxSize) {
 };
 
 int IntegerStack::size(){
-    return this->pos;
+    return this->capacity;
 }
 
 bool IntegerStack::isEmpty() {
-    return (this->pos == 0);
+    return (this->capacity == 0);
 }
 
 int IntegerStack::peek(){
-    return this->array[this->pos - 1];
+    return this->array[this->capacity - 1];
 }
 
 void IntegerStack::push(int value){
-    this->array[this->pos++] = value;
+    this->array[this->capacity++] = value;
 }
 
 int IntegerStack::pop(){
-    return this->array[--this->pos];
+    return this->array[--this->capacity];
 }
 
 int main(int argc, char const *argv[])
