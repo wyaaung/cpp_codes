@@ -88,5 +88,7 @@ int main(int argc, char const *argv[])
     cout << "\nThe Queue is " << 
     (q->isEmpty() ? "empty\n" : "not empty\n");
 
+    delete q;
+
     return 0;
 }

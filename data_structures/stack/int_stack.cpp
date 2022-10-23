@@ -5,6 +5,10 @@ IntegerStack::IntegerStack(int maxSize) {
 };
 
 IntegerStack::~IntegerStack(){
+    delete this->array;
+}
+
+IntegerStack::~IntegerStack(){
     delete[] this->array;
 }
 
@@ -51,6 +55,8 @@ int main(int argc, char const *argv[])
     }
 
     cout << "\n";
+
+    delete intStack;
 
     return 0;
 }
