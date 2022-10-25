@@ -11,4 +11,10 @@ class Node {
     public:
         Node(T value);
         Node(T value, Node<T> *&next, Node<T> *&prev);
+};
+
+template<class T> void swap(T& x, T& y){
+    T temp = x;
+    x = y;
+    y = temp;
 }
