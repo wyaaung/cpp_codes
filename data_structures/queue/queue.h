@@ -22,4 +22,7 @@ class Queue{
 
         // return the element at the head of the queue 
         virtual int dequeue() = 0;
+
+        // Virtual Destructor
+        virtual ~Queue() = default;
 };

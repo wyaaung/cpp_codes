@@ -8,10 +8,6 @@ IntegerStack::~IntegerStack(){
     delete this->array;
 }
 
-IntegerStack::~IntegerStack(){
-    delete[] this->array;
-}
-
 int IntegerStack::size(){
     return this->count;
 }

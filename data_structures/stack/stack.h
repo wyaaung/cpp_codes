@@ -19,4 +19,6 @@ class Stack {
 
         // Peek the element off the stack without actually removing.
         virtual T peek() = 0;
+
+        virtual ~Stack() = default;
 };
