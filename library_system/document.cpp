@@ -4,6 +4,9 @@
 void Document::updateTitle(const char *newTitle) {
     free(_title);
     _title = (char*) malloc((strlen(newTitle)+1) * sizeof(char));
+    if (_title == NULL){
+        exit(-1);
+    }
     strcpy(_title, newTitle);
 }
 
