@@ -11,7 +11,7 @@ typedef enum {
 
 
 class Document {
-    private:
+    protected:
         char *_title;   // document title
         int _year;      // year of publication
         int _quantity;  // quantity held in the library
