@@ -4,11 +4,13 @@
 Novel::Novel(const char *title, const char *author, int year, int quantity){
     updateYear(year);
     updateQuantity(quantity);
+
     _title = (char*) malloc((strlen(title)+1) * sizeof(char));
     if (_title == NULL) {
         exit(-1);
     }
     strcpy(_title, title);
+
     _author = (char*) malloc((strlen(author)+1) * sizeof(char));
     if (_author == NULL){
         exit(-1);
