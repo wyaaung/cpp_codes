@@ -1,3 +1,6 @@
+#ifndef DOCUMENT_H
+#define DOCUMENT_H
+
 #include <iostream>
 
 using namespace std;
@@ -8,7 +11,6 @@ typedef enum {
     DOC_COMIC,
     DOC_MAGAZINE
 } document_type;
-
 
 class Document {
     protected:
@@ -36,3 +38,5 @@ class Document {
         /* Used when someone returns a document */
         void returnDoc();
 };
+
+#endif  /* DOCUMENT_H */

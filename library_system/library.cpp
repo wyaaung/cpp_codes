@@ -78,7 +78,6 @@ int Library::addDocument(Document  *d){
 int Library::delDocument(const char *title){
       for (int i=0; i < _docs.size(); i++){
         if (strcmp(_docs.at(i)->getTitle(),title) == 0){
-              Document *document = _docs[i];
               _docs.erase(_docs.begin() + i);
               return 0;
         }
