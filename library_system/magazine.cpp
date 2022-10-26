@@ -6,6 +6,7 @@ Magazine::Magazine(const char *title, int issue, int year, int quantity){
     updateYear(year);
     updateQuantity(quantity);
 
+    /* Dynamic Memory Allocation */
     _title = (char*) malloc((strlen(title)+1) * sizeof(char));
     if(_title == NULL){
         exit(-1);

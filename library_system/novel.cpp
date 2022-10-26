@@ -40,10 +40,12 @@ void Novel::print(){
 /*Setting the name of the author of the novel*/
 void Novel::updateAuthor(const char *newAuthor){
     free(_author);
+
+    /* Dynamic Memory Allocation */
     _author = (char*) malloc((strlen(newAuthor)+1) * sizeof(char));
     if(_author == NULL){
         exit(-1);
-    } 
+    }
     strcpy(_author, newAuthor);
 }
 
