@@ -25,7 +25,7 @@ Novel::~Novel(){
 }
 
 /*getter for the type of the document. Returns DOC_NOVEL*/
-document_type Novel::getDocType(){
+document_type Novel::getDocumentType(){
     return DOC_NOVEL;
 }
 

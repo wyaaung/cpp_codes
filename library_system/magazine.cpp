@@ -20,7 +20,7 @@ Magazine::~Magazine(){
 }
 
 /*getter for the type of the document. Returns DOC_MAGAZINE*/
-document_type Magazine::getDocType(){
+document_type Magazine::getDocumentType(){
     return DOC_MAGAZINE;
 }
 

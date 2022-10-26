@@ -1,6 +1,9 @@
 #include <vector>
+#include <fstream>
 
-#include "document.h"
+#include "magazine.h"
+#include "novel.h"
+#include "comic.h"
 
 class Library {
     private:

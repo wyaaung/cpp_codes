@@ -9,7 +9,7 @@ class Novel : public Document {
         Novel(const char *title, const char *author, int year, int quantity);
         ~Novel();
 
-        document_type getDocType();
+        document_type getDocumentType();
         void print();
 
         /* getters and setters */

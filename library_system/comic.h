@@ -10,7 +10,7 @@ class Comic : public Document {
         Comic(const char *title, const char *author, int issue, int year, int quantity);
         ~Comic();
 
-        document_type getDocType();
+        document_type getDocumentType();
         void print();
 
         /* getters, setters */

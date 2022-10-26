@@ -24,7 +24,7 @@ Comic::~Comic(){
 }
 
 /*getter for the type of the document. Returns DOC_COMIC*/
-document_type Comic::getDocType(){
+document_type Comic::getDocumentType(){
     return DOC_COMIC;
 }
 

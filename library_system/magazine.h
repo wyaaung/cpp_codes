@@ -8,7 +8,7 @@ class Magazine : public Document {
         Magazine(const char *title, int issue, int year, int quantity);
         ~Magazine();
 
-        document_type getDocType();
+        document_type getDocumentType();
         void print();
 
         /* getters, setters */
