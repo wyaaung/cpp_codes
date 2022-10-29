@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
 
+/*
+Pancake sort is a sorting algorithm in which the only allowed operation is to "flip" one end of the list.
+In-place sorting. Unstable.
+
+Time Complexity: O(n^2), Total O(n) flip operations are performed in above code
+Auxiliary Space: O(1)
+*/
 #define SIZE 100000
 
 using namespace std;

@@ -9,6 +9,14 @@
  * Sort individual buckets using insertion sort.
  * Concatenate all sorted buckets
  */
+
+/*
+Distributing the elements of an array into a number of buckets.
+
+Time Complexity: O(n^2) Worst Case
+Space Complexity: O(n+k) Worst Case where k is the number of buckets
+ */
+
 using namespace std;
 
 void display(vector<float> &arr){

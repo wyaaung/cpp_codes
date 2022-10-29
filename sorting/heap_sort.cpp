@@ -1,6 +1,17 @@
 #include <iostream>
 #include <vector>
 
+/*
+Time Complexity: O(N log N)
+Auxiliary Space: O(1)
+
+Consists of two phases.
+1. The array is converted into a max heap.
+2. The highest element is removed, and the remaining elements are used to create a new max heap.
+
+Uses a heap data structure to efficiently sort its element.
+*/
+
 #define SIZE 100000
 
 using namespace std;

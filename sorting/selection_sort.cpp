@@ -12,6 +12,15 @@
  *
  */
 
+/*
+Time Complexity: O(n^2)
+Space Complexity: O(1)
+
+In place sorting algorithm.
+Selection sort is noted for its simplicity and has performance advantages over more complicated algorithms in certain situations,
+particularly where auxiliary memory is limited.
+*/
+
 using namespace std;
 
 void display(vector<int> &arr){

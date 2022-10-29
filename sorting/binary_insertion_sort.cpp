@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+Time Complexity: 
+The algorithm as a whole still has a running worst-case running time
+ of O(n^2) because of the series of swaps required for each insertion.
+ */
+
 #define SIZE 100000
 
 using namespace std;

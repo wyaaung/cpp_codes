@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 
+/*
+Time Complexity: O(n^2)
+Space Complexity: O(n)
+
+Iterative code takes less memory than recursive one, so we should prefer iterative bubble sort ore than recursive bubble sort.
+*/
 #define SIZE 100000
 
 using namespace std;

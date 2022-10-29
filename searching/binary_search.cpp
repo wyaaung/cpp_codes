@@ -2,7 +2,12 @@
 #include <vector>
 
 #define SIZE 100000
+/*
+Time Complexity: O(log n)
+Auxiliary Space: O(1)
 
+Only worked in sorted array.
+*/
 using namespace std;
 
 // Returns an index in an array of the searching value, otherwise -1.

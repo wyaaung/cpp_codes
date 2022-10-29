@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
 
+/*
+Time Complexity: O(N^2)
+Auxiliary Space: O(1)
+
+Insertion sort is an in-place sorting and stable sorting algorithm
+*/
+
 #define SIZE 100000
 
 using namespace std;

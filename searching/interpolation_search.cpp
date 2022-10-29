@@ -9,6 +9,11 @@
  * 
  */
 
+/*
+Time Complexity: O(log2(log2 n)) for the average case, and O(n) for the worst case
+Auxiliary Space Complexity: O(1)
+*/
+
 using namespace std;
 
 int interpolationSearch(vector<int> &arr, int search){
