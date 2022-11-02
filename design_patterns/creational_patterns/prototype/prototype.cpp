@@ -76,6 +76,8 @@ int main(int argc, char const *argv[]){
     Shape *shape = shapeFactory->createShape(Type::RECTANGLE);
     shape->printShape();
 
+    delete shape;
+
     shape = shapeFactory->createShape(Type::CIRCLE);
     shape->printShape();
 
