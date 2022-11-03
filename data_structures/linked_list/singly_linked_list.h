@@ -8,9 +8,11 @@ class Node {
         T value;
         Node<T> *next;
 
+        friend class SinglyLinkedList<T>;
+
     public:
+        Node();
         Node(T value);
-        Node(T value, Node<T> *&next);
 };
 
 template<class T> void swap(T& x, T& y){
@@ -19,3 +21,21 @@ template<class T> void swap(T& x, T& y){
     y = temp;
 }
 
+template <typename T>
+class SinglyLinkedList {
+    private:
+        Node<T> *header;
+
+    public:
+        SinglyLinkedList();
+
+        ~SinglyLinkedList();
+        // is list empty?
+        bool empty() const;
+        // get front value
+        const T& front() const;
+        // add from head
+        void addFront(const T& value);
+        // remove from head
+        void removeFront();
+};
