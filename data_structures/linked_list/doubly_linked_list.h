@@ -3,6 +3,9 @@
 using namespace std;
 
 template <typename T>
+class DoublyLinkedList;
+
+template <typename T>
 class Node {
     private:
         T value;
@@ -10,10 +13,10 @@ class Node {
 
         // A friend class can access private and protected members of other class 
         // in which it is declared as friend.
-        friend class DoublyLinkedList;
+        friend class DoublyLinkedList<T>;
     public:
+        Node();
         Node(T value);
-        Node(T value, Node<T> *&next, Node<T> *&prev);
 };
 
 template<class T> void swap(T& x, T& y){
@@ -28,8 +31,8 @@ class DoublyLinkedList {
     private:
         int size = 0;
 
-        Node<T> *head = nullptr;
-        Node<T> *tail = nullptr;
+        Node<T> *header = nullptr;
+        Node<T> *tailer = nullptr;
 
     public:
         DoublyLinkedList();         // Constructor
