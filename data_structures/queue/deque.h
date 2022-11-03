@@ -1,6 +1,12 @@
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
+
+struct DequeEmpty : public runtime_error
+{
+    DequeEmpty(const char* msg) : runtime_error(msg) {}
+};
 
 template <typename T>
 class DoublyLinkedList;

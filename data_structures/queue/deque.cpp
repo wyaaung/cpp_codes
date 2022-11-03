@@ -132,7 +132,7 @@ void LinkedDeque<T>::removeBack() throw(DequeEmpty) {
 }
 
 template <typename T>
-const T& LinkedDeque<T>::front() throw(DequeEmpty) {
+const T& LinkedDeque<T>::front() const throw(DequeEmpty) {
     if (empty()){
         throw DequeEmpty("front of Empty Queue");
     }
@@ -141,7 +141,7 @@ const T& LinkedDeque<T>::front() throw(DequeEmpty) {
 }
 
 template <typename T>
-const T& LinkedDeque<T>::back() throw(DequeEmpty) {
+const T& LinkedDeque<T>::back() const throw(DequeEmpty) {
     if (empty()){
         throw DequeEmpty("back of EmptyQueue");
     }
@@ -153,4 +153,3 @@ template <typename T>
 int LinkedDeque<T>::size() const {
     return this->n;
 }
-
