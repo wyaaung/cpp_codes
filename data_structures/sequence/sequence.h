@@ -8,6 +8,10 @@ struct IndexOutOfBounds: public runtime_error {
     IndexOutOfBounds(const char * msg): runtime_error(msg) {}
 };
 
+struct PositionOutOfBounds: public runtime_error {
+    PositionOutOfBounds(const char * msg): runtime_error(msg) {}
+};
+
 template < typename T >
     class NodeList {
         private:
@@ -80,5 +84,6 @@ template < typename T >
         public: typename NodeList < T > ::Iterator atIndex(int i) const
         throw (IndexOutOfBounds); // Get position from index
 
-        int indexOf(const typename NodeList < T > ::Iterator & p) const; // Get index from position
+        int indexOf(const typename NodeList < T > ::Iterator & p) const
+        throw (PositionOutOfBounds); // Get index from position
     };

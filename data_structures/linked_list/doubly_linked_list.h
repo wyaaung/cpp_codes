@@ -2,61 +2,62 @@
 
 using namespace std;
 
-template <typename T>
-class DoublyLinkedList;
+template < typename T >
+    class DoublyLinkedList;
 
-template <typename T>
-class Node {
-    private:
-        T value;
-        Node<T> *next, *prev;
+template < typename T >
+    class Node {
+        private:
+            T value;
+        Node < T > * next, * prev;
 
         // A friend class can access private and protected members of other class 
         // in which it is declared as friend.
-        friend class DoublyLinkedList<T>;
-    public:
-        Node();
+        friend class DoublyLinkedList < T > ;
+        public:
+            Node();
         Node(T value);
-};
+    };
 
-template<class T> void swap(T& x, T& y){
+template < class T > void swap(T & x, T & y) {
     T temp = x;
     x = y;
     y = temp;
 }
 
 // Doubly Linked List 
-template <typename T>
-class DoublyLinkedList {
-    private:
-        int size = 0;
+template < typename T >
+    class DoublyLinkedList {
+        private:
+            int size = 0;
 
-        Node<T> *header = nullptr;
-        Node<T> *tailer = nullptr;
+        Node < T > * header = nullptr;
+        Node < T > * tailer = nullptr;
 
-    public:
-        DoublyLinkedList();         // Constructor
+        public:
+            DoublyLinkedList(); // Constructor
 
-        ~DoublyLinkedList();        // Destructor
+        ~DoublyLinkedList(); // Destructor
 
-        bool empty() const;         // is list empty?
+        bool empty() const; // is list empty?
 
-        const T& head() const;      // get head node
+        const T & head() const; // get head node
 
-        const T& tail() const;       // get tail node
+        const T & tail() const; // get tail node
 
         // Get read access to node, but cannot modify its value (becuz of const).
         // Thread Safe
-        void addFront(const T& value);   // add to the head of list
+        void addFront(const T & value); // add to the head of list
 
-        void addBack(const T& value);    // add to tail of the list
+        void addBack(const T & value); // add to tail of the list
 
-        void removeFront();             // remove from head
+        void removeFront(); // remove from head
 
-        void removeBack();              // remove from tail
+        void removeBack(); // remove from tail
 
-    protected:
-        void add(Node<T> *node, const T& value);       // insert new node after before "node"
+        protected:
+            void add(Node < T > * node,
+                const T & value); // insert new node after before "node"
 
-        void remove(Node<T> *node);         // remove node "node"
-};
+        void remove(Node < T > * node); // remove node "node"
+    };

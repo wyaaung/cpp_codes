@@ -149,11 +149,15 @@ throw (IndexOutOfBounds) {
 }
 
 template < typename T >
-    int NodeSequence < T > ::indexOf(const typename NodeList < T > ::Iterator & p) const {
+    int NodeSequence < T > ::indexOf(const typename NodeList < T > ::Iterator & p) const
+throw (PositionOutOfBounds) {
         typename NodeList < T > ::Iterator start = NodeList < T > ::begin();
 
         int j = 0;
         while (start != p) {
+            if (start == this->trailer) {
+                throw PositionOutOfBounds("Positions Out Of Bounds");
+            }
             ++start;
             ++j;
         }

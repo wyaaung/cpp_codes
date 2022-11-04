@@ -1,74 +1,74 @@
 #include "circularly_linked_list.h"
 
-template <typename T>
-Node<T>::Node() {
-    this->next = nullptr;
-}
-
-template <typename T>
-Node<T>::Node(T value) {
-    this->value = value;
-    this->next = nullptr;
-}
-
-template <typename T>
-CircularlyLinkedList<T>::CircularlyLinkedList() {
-    this->cursor = nullptr;
-}
-
-template <typename T>
-CircularlyLinkedList<T>::~CircularlyLinkedList() {
-    while (!empty()) {
-        remove();
-    }
-}
-
-template <typename T>
-bool CircularlyLinkedList<T>::empty() const {
-    return (this->cursor == nullptr);
-}
-
-template <typename T>
-const T& CircularlyLinkedList<T>::head() const {
-    /* Value following cursor */
-    return this->cursor->next->value;
-}
-
-template <typename T>
-const T& CircularlyLinkedList<T>::tail() const {
-    /* Value at cursor*/
-    return this->cursor->value;
-}
-
-template <typename T>
-void CircularlyLinkedList<T>::advance() {
-    this->cursor = this->cursor->next;
-}
-
-template <typename T>
-void CircularlyLinkedList<T>::add(const T& value) {
-    Node<T> *newNode = new Node<T>(value);
-
-    if (this->cursor == NULL) {
-        /* newNode points to itself, cursor points to newNode*/
-        newNode->next = newNode;
-        cursor = newNode;
-    } else {
-        /* Insert a node just after a cursor */
-        newNode->next = this->cursor->next;
-        cursor->next = newNode;
-    }
-}
-
-template <typename T>
-void CircularlyLinkedList<T>::remove() {
-    Node<T> *oldNode = this->cursor->next;
-
-    if (oldNode == this->cursor) {
-        this->cursor =  nullptr;
-    }else{
-        this->cursor->next = oldNode->next;
+template < typename T >
+    Node < T > ::Node() {
+        this -> next = nullptr;
     }
 
-    delete oldNode;
-}
+template < typename T >
+    Node < T > ::Node(T value) {
+        this -> value = value;
+        this -> next = nullptr;
+    }
+
+template < typename T >
+    CircularlyLinkedList < T > ::CircularlyLinkedList() {
+        this -> cursor = nullptr;
+    }
+
+template < typename T >
+    CircularlyLinkedList < T > ::~CircularlyLinkedList() {
+        while (!empty()) {
+            remove();
+        }
+    }
+
+template < typename T >
+    bool CircularlyLinkedList < T > ::empty() const {
+        return (this -> cursor == nullptr);
+    }
+
+template < typename T >
+    const T & CircularlyLinkedList < T > ::head() const {
+        /* Value following cursor */
+        return this -> cursor -> next -> value;
+    }
+
+template < typename T >
+    const T & CircularlyLinkedList < T > ::tail() const {
+        /* Value at cursor*/
+        return this -> cursor -> value;
+    }
+
+template < typename T >
+    void CircularlyLinkedList < T > ::advance() {
+        this -> cursor = this -> cursor -> next;
+    }
+
+template < typename T >
+    void CircularlyLinkedList < T > ::add(const T & value) {
+        Node < T > * newNode = new Node < T > (value);
+
+        if (this -> cursor == NULL) {
+            /* newNode points to itself, cursor points to newNode*/
+            newNode -> next = newNode;
+            cursor = newNode;
+        } else {
+            /* Insert a node just after a cursor */
+            newNode -> next = this -> cursor -> next;
+            cursor -> next = newNode;
+        }
+    }
+
+template < typename T >
+    void CircularlyLinkedList < T > ::remove() {
+        Node < T > * oldNode = this -> cursor -> next;
+
+        if (oldNode == this -> cursor) {
+            this -> cursor = nullptr;
+        } else {
+            this -> cursor -> next = oldNode -> next;
+        }
+
+        delete oldNode;
+    }

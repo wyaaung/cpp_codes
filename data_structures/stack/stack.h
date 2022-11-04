@@ -2,11 +2,11 @@
 
 using namespace std;
 
-template <typename T>
-class Stack {
-    public:
-        // return the number of elements in the stack
-        virtual int size() = 0;
+template < typename T >
+    class Stack {
+        public:
+            // return the number of elements in the stack
+            virtual int size() = 0;
 
         // return if the stack is empty
         virtual bool isEmpty() = 0;
@@ -20,5 +20,6 @@ class Stack {
         // Peek the element off the stack without actually removing.
         virtual T peek() = 0;
 
-        virtual ~Stack() = default;
-};
+        virtual~Stack() =
+            default;
+    };

@@ -2,12 +2,12 @@
 
 using namespace std;
 
-template <typename T>
-class Queue{
-    public:
-        // Add an element to the queue
-        virtual void enqueue(T element) = 0;
-        
+template < typename T >
+    class Queue {
+        public:
+            // Add an element to the queue
+            virtual void enqueue(T element) = 0;
+
         // return true/false on whether the queue is empty
         virtual bool isEmpty() = 0;
 
@@ -16,7 +16,7 @@ class Queue{
 
         // Peek the element off the queue without actually removing.
         virtual T peek() = 0;
-        
+
         // return true/false on whether the queue is full
         virtual int isFull() = 0;
 
@@ -24,5 +24,6 @@ class Queue{
         virtual int dequeue() = 0;
 
         // Virtual Destructor
-        virtual ~Queue() = default;
-};
+        virtual~Queue() =
+            default;
+    };

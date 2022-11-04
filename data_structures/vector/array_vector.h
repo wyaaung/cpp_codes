@@ -1,22 +1,22 @@
 #include <iostream>
+
 #include <stdexcept>
 
 using namespace std;
 
-struct IndexOutOfBounds : public runtime_error
-{
-    IndexOutOfBounds(const char* msg) : runtime_error(msg) {}
+struct IndexOutOfBounds: public runtime_error {
+    IndexOutOfBounds(const char * msg): runtime_error(msg) {}
 };
 
-template <typename T>
-class ArrayVector {
-    private:
-        int capacity;
+template < typename T >
+    class ArrayVector {
+        private:
+            int capacity;
         int n;
-        T* array;
+        T * array;
 
-    public:
-        ArrayVector();
+        public:
+            ArrayVector();
 
         ~ArrayVector();
 
@@ -25,19 +25,20 @@ class ArrayVector {
         bool empty() const;
 
         /* Element at index i */
-        T& operator[](int i);
+        T & operator[](int i);
 
         /* Element at index i */
-        T& at(int i) throw(IndexOutOfBounds);
+        T & at(int i) throw (IndexOutOfBounds);
 
         /* Remove element at index i */
         void erase(int i);
 
         /* Insert element at index i */
-        void insert(int i, const T& value);
+        void insert(int i,
+            const T & value);
 
         /* Append an element at the last*/
-        void push_back(const T& value);
+        void push_back(const T & value);
 
         /* Remove the last element */
         void pop_back();
@@ -45,4 +46,4 @@ class ArrayVector {
         /* Reserve at least N spots */
         /* Allows users to expand the capacity to at least N */
         void reserve(int N);
-};
+    };
