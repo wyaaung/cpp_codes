@@ -44,34 +44,34 @@ template < typename T >
         public:
             NodeList();
 
-        int size() const;
+            int size() const;
 
-        bool empty() const;
+            bool empty() const;
 
-        Iterator begin() const;
+            Iterator begin() const;
 
-        Iterator end() const;
+            Iterator end() const;
 
-        void insertFront(const T & value);
+            void insertFront(const T & value);
 
-        void insertBack(const T & value);
+            void insertBack(const T & value);
 
-        /* Insert element before p */
-        void insert(const Iterator & p,
-            const T & value);
+            /* Insert element before p */
+            void insert(const Iterator & p,
+                const T & value);
 
-        void eraseFront();
+            void eraseFront();
 
-        void eraseBack();
+            void eraseBack();
 
-        void erase(const Iterator & p); // Remove p
+            void erase(const Iterator & p); // Remove p
 
         private:
             int n;
 
-        Node * header;
+            Node * header;
 
-        Node * trailer;
+            Node * trailer;
     };
 
 /* 
