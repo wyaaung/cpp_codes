@@ -25,8 +25,10 @@ class NodeList {
                 bool operator!=(const Iterator& p) const;
 
                 /* Move to next and previous positions */
-                Iterator& operator++();
-                Iterator& operator--();
+                Iterator& operator++();     // Pre Increment ++p
+                Iterator& operator++(int);  // Post Increment p++
+                Iterator& operator--();     // Pre Decrement --p
+                Iterator& operator--(int);  // Post Decrement --p
         };
 
     public:

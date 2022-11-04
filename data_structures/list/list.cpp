@@ -27,10 +27,25 @@ typename NodeList<T>::Iterator& NodeList<T>::Iterator::operator++() {
 }
 
 template <typename T>
+typename NodeList<T>::Iterator& NodeList<T>::Iterator::operator++(int) {
+    Iterator copy(*this);
+    this->pointer = this->pointer->next;
+    return copy;
+}
+
+template <typename T>
 typename NodeList<T>::Iterator& NodeList<T>::Iterator::operator--() {
     this->pointer = this->pointer->prev;
     return *this;
 }
+
+template <typename T>
+typename NodeList<T>::Iterator& NodeList<T>::Iterator::operator--(int) {
+    Iterator copy(*this);
+    this->pointer = this->pointer->prev;
+    return copy;
+}
+
 
 template <typename T>
 NodeList<T>::NodeList() {
