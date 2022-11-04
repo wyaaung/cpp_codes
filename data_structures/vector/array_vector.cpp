@@ -75,8 +75,12 @@ void ArrayVector<T>::insert(int i, const T& value) {        // O(n)
     this->n++;
 }
 
-int main(int argc, char const *argv[])
-{
-    /* code */
-    return 0;
+template <typename T>
+void ArrayVector<T>::push_back(const T& value) {
+    insert(this->n, value);
+}
+
+template <typename T>
+void ArrayVector<T>::pop_back() {
+    this->n--;
 }

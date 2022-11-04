@@ -36,6 +36,12 @@ class ArrayVector {
         /* Insert element at index i */
         void insert(int i, const T& value);
 
+        /* Append an element at the last*/
+        void push_back(const T& value);
+
+        /* Remove the last element */
+        void pop_back();
+
         /* Reserve at least N spots */
         /* Allows users to expand the capacity to at least N */
         void reserve(int N);
