@@ -1,6 +1,11 @@
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
+
+struct UninitializedIterator: public runtime_error {
+    UninitializedIterator(const char * msg): runtime_error(msg) {}
+};
 
 template < typename Object >
     class DoublyLinkedList {
@@ -10,41 +15,44 @@ template < typename Object >
                 Node * prev;
                 Node * next;
 
-                Node(const Object & d = Object {}, Node * p = nullptr, Node * n = nullptr): data {
-                    d
-                }, prev {
-                    p
-                }, next {
-                    n
-                } {}
+                Node(const Object & d = Object {}, Node * p = nullptr, Node * n = nullptr):
+                data { d }, 
+                prev { p }, 
+                next { n } {}
 
-                Node(Object && d, Node * p = nullptr, Node * n = nullptr): data {
-                    std::move(d)
-                }, prev {
-                    p
-                }, next {
-                    n
-                } {}
+                Node(Object && d, Node * p = nullptr, Node * n = nullptr):
+                data { move(d) },
+                prev { p },
+                next { n } {}
             };
 
         public:
             class const_iterator {
                 public:
 
-                    const_iterator(): current {
-                        nullptr
-                    } {}
+                    const_iterator():
+                    current { nullptr } {}
 
-                    const Object & operator * () const {
+                    const Object & operator * () const throw ( UninitializedIterator ) {
+                        if (current == nullptr) {
+                            throw UninitializedIterator("Uninitialized Iterator");
+                        }
                         return retrieve();
                     }
 
-                    const_iterator & operator++() {
+                    const_iterator & operator++() throw ( UninitializedIterator ) {
+                        if (current == nullptr) {
+                            throw UninitializedIterator("Uninitialized Iterator");
+                        }
                         current = current -> next;
                         return *this;
                     }
 
-                    const_iterator operator++(int) {
+                    const_iterator operator++(int) throw ( UninitializedIterator ) {
+                        if (current == nullptr) {
+                            throw UninitializedIterator("Uninitialized Iterator");
+                        }
+
                         const_iterator old = * this;
                         ++( * this);
                         return old;
@@ -60,15 +68,17 @@ template < typename Object >
 
                 protected:
 
+                    const DoublyLinkedList<Object> *theDoublyLinkedList;
+
                     Node * current;
 
                     Object & retrieve() const {
                         return current -> data;
                     }
 
-                    const_iterator(Node * p): current {
-                        p
-                    } {}
+                    const_iterator(const DoublyLinkedList<Object> & theList, Node * p):
+                    theDoublyLinkedList{ &theList },
+                    current { p } {}
 
                     friend class DoublyLinkedList < Object > ;
             };
@@ -98,9 +108,8 @@ template < typename Object >
 
             protected:
 
-                iterator(Node * p): const_iterator {
-                    p
-                } {}
+                iterator(Node * p):
+                const_iterator { p } {}
 
                 friend class DoublyLinkedList < Object > ;
         };
@@ -109,14 +118,14 @@ template < typename Object >
 
             DoublyLinkedList();
 
-            DoublyLinkedList(const DoublyLinkedList & rhs);
-
             ~DoublyLinkedList();
 
+            /* Copy Constructor and Copy Assignment Operator. Works only if swapping is done by moving*/
+            DoublyLinkedList(const DoublyLinkedList & rhs);
             DoublyLinkedList & operator = (const DoublyLinkedList & rhs);
 
+            /* Move Constructor and Move Assignement. Works only if swapping is done by moving */
             DoublyLinkedList(DoublyLinkedList && rhs);
-
             DoublyLinkedList & operator = (DoublyLinkedList & rhs);
 
             iterator begin() {

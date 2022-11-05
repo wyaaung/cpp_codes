@@ -1,7 +1,5 @@
 #include <iostream>
-
 #include <stdexcept>
-
 #include <algorithm>
 
 using namespace std;
@@ -13,18 +11,18 @@ struct IndexOutOfBounds: public runtime_error {
 template < typename Object >
     class ArrayVector {
         public:
+            /* Initial constructor with default size 0 */
             explicit ArrayVector(int initSize = 0);
 
+            /* Destructor */
             ~ArrayVector();
 
-            ArrayVector(ArrayVector & rhs);
-
+            /* Copy Constructor and Copy Assignment Operator. Works only if swapping is done by moving*/
             ArrayVector(const ArrayVector & rhs);
-
-            /* Move Constructor */
             ArrayVector & operator = (const ArrayVector & rhs);
 
-            /* Copy Constructor */
+            /* Move Constructor and Move Assignement. Works only if swapping is done by moving */
+            ArrayVector(ArrayVector && rhs);
             ArrayVector & operator = (ArrayVector && rhs);
 
             void resize(int newSize);
@@ -41,6 +39,8 @@ template < typename Object >
 
             int capacity() const;
 
+            void push_back(Object && x);
+
             void push_back(const Object & x);
 
             void pop_back();
@@ -48,8 +48,7 @@ template < typename Object >
             const Object & back() const;
 
             typedef Object * iterator;
-            typedef
-            const Object * const_iterator;
+            typedef const Object * const_iterator;
 
             iterator begin() {
                 return objects[0];

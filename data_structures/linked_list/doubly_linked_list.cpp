@@ -6,18 +6,18 @@ template < typename Object >
     }
 
 template < typename Object >
+    DoublyLinkedList < Object > ::~DoublyLinkedList() {
+        clear();
+        delete head;
+        delete tail;
+    }
+
+template < typename Object >
     DoublyLinkedList < Object > ::DoublyLinkedList(const DoublyLinkedList & rhs) {
         init();
         for (auto & x: rhs) {
             push_back(x);
         }
-    }
-
-template < typename Object >
-    DoublyLinkedList < Object > ::~DoublyLinkedList() {
-        clear();
-        delete head;
-        delete tail;
     }
 
 template < typename Object >
@@ -28,13 +28,10 @@ template < typename Object >
     }
 
 template < typename Object >
-    DoublyLinkedList < Object > ::DoublyLinkedList(DoublyLinkedList && rhs): theSize {
-        rhs.theSize
-    }, head {
-        rhs.head
-    }, tail {
-        rhs.tail
-    } {
+    DoublyLinkedList < Object > ::DoublyLinkedList(DoublyLinkedList && rhs):
+    theSize { rhs.theSize },
+    head { rhs.head },
+    tail { rhs.tail } {
         rhs.theSize = 0;
         rhs.head = nullptr;
         rhs.tail = nullptr;
@@ -111,6 +108,8 @@ template < typename Object >
         erase(begin());
     }
 
+/*  note that erase(--end()) creates a temporary iterator corresponding
+to the endmarker, retreats the temporary iterator, and uses that iterator to erase */
 template < typename Object >
     void DoublyLinkedList < Object > ::pop_back() {
         erase(--end());
@@ -132,13 +131,7 @@ template < typename Object >
 
         theSize++;
 
-        return {
-            p -> prev = p -> prev -> next = new Node {
-                x,
-                p -> prev,
-                p
-            }
-        };
+        return { p -> prev = p -> prev -> next = new Node { x, p -> prev, p } };
     }
 
 template < typename Object >
@@ -148,11 +141,7 @@ template < typename Object >
 
         theSize++;
 
-        return {
-            p -> prev = p -> prev -> next = new Node {
-                move(x), p -> prev, p
-            }
-        };
+        return { p -> prev = p -> prev -> next = new Node { move(x), p -> prev, p } };
     }
 
 template < typename Object >
