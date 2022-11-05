@@ -2,48 +2,76 @@
 
 #include <stdexcept>
 
+#include <algorithm>
+
 using namespace std;
 
 struct IndexOutOfBounds: public runtime_error {
     IndexOutOfBounds(const char * msg): runtime_error(msg) {}
 };
 
-template < typename T >
+template < typename Object >
     class ArrayVector {
-        private:
-            int capacity;
-        int n;
-        T * array;
-
         public:
-            ArrayVector();
+            explicit ArrayVector(int initSize = 0);
 
-        ~ArrayVector();
+            ~ArrayVector();
 
-        int size() const;
+            ArrayVector(ArrayVector & rhs);
 
-        bool empty() const;
+            ArrayVector(const ArrayVector & rhs);
 
-        /* Element at index i */
-        T & operator[](int i);
+            /* Move Constructor */
+            ArrayVector & operator = (const ArrayVector & rhs);
 
-        /* Element at index i */
-        T & at(int i) throw (IndexOutOfBounds);
+            /* Copy Constructor */
+            ArrayVector & operator = (ArrayVector && rhs);
 
-        /* Remove element at index i */
-        void erase(int i);
+            void resize(int newSize);
 
-        /* Insert element at index i */
-        void insert(int i,
-            const T & value);
+            void reserve(int newCapacity);
 
-        /* Append an element at the last*/
-        void push_back(const T & value);
+            Object & operator[](int index) throw (IndexOutOfBounds);
 
-        /* Remove the last element */
-        void pop_back();
+            const Object & operator[](int index) const throw (IndexOutOfBounds);
 
-        /* Reserve at least N spots */
-        /* Allows users to expand the capacity to at least N */
-        void reserve(int N);
+            bool empty() const;
+
+            int size() const;
+
+            int capacity() const;
+
+            void push_back(const Object & x);
+
+            void pop_back();
+
+            const Object & back() const;
+
+            typedef Object * iterator;
+            typedef
+            const Object * const_iterator;
+
+            iterator begin() {
+                return objects[0];
+            }
+
+            const_iterator begin() const {
+                return objects[0];
+            }
+
+            iterator end() {
+                return &ArrayVector < Object > ::objects[size()];
+            }
+
+            const_iterator end() const {
+                return &ArrayVector < Object > ::objects[size()];
+            }
+
+            static const int SPARE_CAPACITY = 16;
+
+        private:
+
+            int theSize;
+            int theCapacity;
+            Object * objects;
     };

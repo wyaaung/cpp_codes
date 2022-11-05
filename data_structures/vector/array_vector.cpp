@@ -1,87 +1,138 @@
 #include "array_vector.h"
 
-template < typename T >
-    ArrayVector < T > ::ArrayVector() {
-        this -> capacity = 0;
-        this -> n = 0;
-        this -> array = NULL;
+template < typename Object >
+    ArrayVector < Object > ::ArrayVector(int initSize): theSize {
+        initSize
+    },
+    theCapacity {
+        initSize + SPARE_CAPACITY
+    } {
+        objects = new Object[theCapacity];
     }
 
-template < typename T >
-    int ArrayVector < T > ::size() const {
-        return this -> n;
+template < typename Object >
+    ArrayVector < Object > ::~ArrayVector() {
+        delete[] objects;
     }
 
-template < typename T >
-    bool ArrayVector < T > ::empty() const {
-        return (this -> n == 0);
+template < typename Object >
+    ArrayVector < Object > ::ArrayVector(ArrayVector & rhs): theSize {
+        rhs.theSize
+    },
+    theCapacity {
+        rhs.theCapacity
+    }, objects {
+        rhs.objects
+    } {
+        rhs.objects = nullptr;
+        rhs.theSize = 0;
+        rhs.theCapacity = 0;
     }
 
-template < typename T >
-    T & ArrayVector < T > ::operator[](int i) {
-        return this -> array[i];
+template < typename Object >
+    ArrayVector < Object > ::ArrayVector(const ArrayVector & rhs): theSize {
+        rhs.theSize
+    },
+    theCapacity {
+        rhs.theCapacity
+    }, objects {
+        nullptr
+    } {
+        objects = new Object[theCapacity];
+        for (int k = 0; k < theSize; ++k) {
+            objects[k] = rhs.objects[k];
+        }
     }
 
-template < typename T >
-    T & ArrayVector < T > ::at(int i) throw (IndexOutOfBounds) {
-        if (i < 0 || i >= this -> n)
-            throw IndexOutOfBounds("Illegal Index In Function at()");
-
-        return this -> array[i];
+template < typename Object >
+    ArrayVector < Object > & ArrayVector < Object > ::operator = (const ArrayVector & rhs) {
+        ArrayVector copy = rhs;
+        swap( * this, copy);
+        return *this;
     }
 
-template < typename T >
-    void ArrayVector < T > ::erase(int i) { // O(n)
-        /* Shifts elements at index i*/
-        for (int j = i + 1; j < this -> n; j++) {
-            this -> array[j - 1] = this -> array[j];
+template < typename Object >
+    ArrayVector < Object > & ArrayVector < Object > ::operator = (ArrayVector && rhs) {
+        swap(theSize, rhs.theSize);
+        swap(theCapacity, rhs.theCapacity);
+        swap(objects, rhs.objects);
+
+        return *this;
+    }
+
+template < typename Object >
+    void ArrayVector < Object > ::resize(int newSize) {
+        if (newSize > theCapacity) {
+            reserve(newSize * 2);
         }
 
-        this -> n--;
+        theSize = newSize;
     }
 
-template < typename T >
-    void ArrayVector < T > ::reserve(int N) {
-        /* Just one array replacement requires O(n) */
-        /* Already Big Enough*/
-        if (this -> capacity >= N) return;
+template < typename Object >
+    void ArrayVector < Object > ::reserve(int newCapacity) {
+        if (newCapacity < theSize) return;
 
-        T * tempArray = new T[N];
+        Object * newArray = new Object[newCapacity];
 
-        for (int j = 0; j < this -> n; j++) {
-            tempArray[j] = this -> array[j];
+        for (int k = 0; k < theSize; ++k) {
+            newArray[k] = move(objects[k]);
         }
 
-        /* Discard the old array */
-        if (this -> array != NULL) delete[] this -> array;
+        theCapacity = newCapacity;
 
-        this -> array = tempArray;
-
-        this -> capacity = N;
+        swap(objects, newArray);
+        delete[] newArray;
     }
-template < typename T >
-    void ArrayVector < T > ::insert(int i,
-        const T & value) { // O(n)
-        /* Double the array size if overflow */
-        if (this -> n >= this -> capacity) {
-            reserve(max(1, 2 * this -> capacity));
+
+template < typename Object >
+    Object & ArrayVector < Object > ::operator[](int index) throw (IndexOutOfBounds) {
+        if ( index < 0 || index >= theSize) {
+            throw IndexOutOfBounds("INDEX OUT OF BOUNDS");
         }
 
-        /* Shifts Elements Up */
-        for (int j = this -> n - 1; j >= i; j--) {
-            this -> array[j + 1] = this -> array[j];
+        return objects[index];
+    }
+
+template < typename Object >
+    const Object & ArrayVector < Object > ::operator[](int index) const throw (IndexOutOfBounds) {
+        if ( index < 0 || index >= theSize) {
+            throw IndexOutOfBounds("INDEX OUT OF BOUNDS");
         }
 
-        this -> array[i] = value;
-        this -> n++;
+        return objects[index];
     }
 
-template < typename T >
-    void ArrayVector < T > ::push_back(const T & value) {
-        insert(this -> n, value);
+template < typename Object >
+    bool ArrayVector < Object > ::empty() const {
+        return size() == 0;
     }
 
-template < typename T >
-    void ArrayVector < T > ::pop_back() {
-        this -> n--;
+template < typename Object >
+    int ArrayVector < Object > ::size() const {
+        return theSize;
+    }
+
+template < typename Object >
+    int ArrayVector < Object > ::capacity() const {
+        return theCapacity;
+    }
+
+template < typename Object >
+    void ArrayVector < Object > ::push_back(const Object & x) {
+        if (theSize == theCapacity) {
+            reserve(2 * theCapacity + 1);
+        }
+
+        objects[theSize++] = move(x);
+    }
+
+template < typename Object >
+    void ArrayVector < Object > ::pop_back() {
+        --theSize;
+    }
+
+template < typename Object >
+    const Object & ArrayVector < Object > ::back() const {
+        return objects[theSize - 1];
     }

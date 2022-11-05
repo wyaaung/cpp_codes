@@ -2,62 +2,187 @@
 
 using namespace std;
 
-template < typename T >
-    class DoublyLinkedList;
-
-template < typename T >
-    class Node {
-        private:
-            T value;
-        Node < T > * next, * prev;
-
-        // A friend class can access private and protected members of other class 
-        // in which it is declared as friend.
-        friend class DoublyLinkedList < T > ;
-        public:
-            Node();
-        Node(T value);
-    };
-
-template < class T > void swap(T & x, T & y) {
-    T temp = x;
-    x = y;
-    y = temp;
-}
-
-// Doubly Linked List 
-template < typename T >
+template < typename Object >
     class DoublyLinkedList {
         private:
-            int size = 0;
+            struct Node {
+                Object data;
+                Node * prev;
+                Node * next;
 
-        Node < T > * header = nullptr;
-        Node < T > * tailer = nullptr;
+                Node(const Object & d = Object {}, Node * p = nullptr, Node * n = nullptr): data {
+                    d
+                }, prev {
+                    p
+                }, next {
+                    n
+                } {}
+
+                Node(Object && d, Node * p = nullptr, Node * n = nullptr): data {
+                    std::move(d)
+                }, prev {
+                    p
+                }, next {
+                    n
+                } {}
+            };
 
         public:
-            DoublyLinkedList(); // Constructor
+            class const_iterator {
+                public:
 
-        ~DoublyLinkedList(); // Destructor
+                    const_iterator(): current {
+                        nullptr
+                    } {}
 
-        bool empty() const; // is list empty?
+                    const Object & operator * () const {
+                        return retrieve();
+                    }
 
-        const T & head() const; // get head node
+                    const_iterator & operator++() {
+                        current = current -> next;
+                        return *this;
+                    }
 
-        const T & tail() const; // get tail node
+                    const_iterator operator++(int) {
+                        const_iterator old = * this;
+                        ++( * this);
+                        return old;
+                    }
 
-        // Get read access to node, but cannot modify its value (becuz of const).
-        // Thread Safe
-        void addFront(const T & value); // add to the head of list
+                    bool operator == (const const_iterator & rhs) const {
+                        return current == rhs.current;
+                    }
 
-        void addBack(const T & value); // add to tail of the list
+                    bool operator != (const const_iterator & rhs) const {
+                        return !( * this == rhs);
+                    }
 
-        void removeFront(); // remove from head
+                protected:
 
-        void removeBack(); // remove from tail
+                    Node * current;
 
-        protected:
-            void add(Node < T > * node,
-                const T & value); // insert new node after before "node"
+                    Object & retrieve() const {
+                        return current -> data;
+                    }
 
-        void remove(Node < T > * node); // remove node "node"
+                    const_iterator(Node * p): current {
+                        p
+                    } {}
+
+                    friend class DoublyLinkedList < Object > ;
+            };
+
+        class iterator: public const_iterator {
+            public: 
+                iterator() {}
+
+                Object & operator * () {
+                    return const_iterator::retrieve();
+                }
+
+                const Object & operator * () const {
+                    return const_iterator::operator * ();
+                }
+
+                iterator & operator++() {
+                    this -> current = this -> current -> next;
+                    return *this;
+                }
+
+                iterator operator++(int) {
+                    iterator old = * this;
+                    ++( * this);
+                    return old;
+                }
+
+            protected:
+
+                iterator(Node * p): const_iterator {
+                    p
+                } {}
+
+                friend class DoublyLinkedList < Object > ;
+        };
+
+        public:
+
+            DoublyLinkedList();
+
+            DoublyLinkedList(const DoublyLinkedList & rhs);
+
+            ~DoublyLinkedList();
+
+            DoublyLinkedList & operator = (const DoublyLinkedList & rhs);
+
+            DoublyLinkedList(DoublyLinkedList && rhs);
+
+            DoublyLinkedList & operator = (DoublyLinkedList & rhs);
+
+            iterator begin() {
+                return {
+                    head -> next
+                };
+            }
+
+            const_iterator begin() const {
+                return {
+                    head -> next
+                };
+            }
+
+            iterator end() {
+                return {
+                    tail
+                };
+            }
+
+            const_iterator end() const {
+                return {
+                    tail
+                };
+            }
+
+            int size() const;
+
+            bool empty() const;
+
+            void clear();
+
+            Object & front();
+
+            const Object & front() const;
+
+            Object & back();
+
+            const Object & back() const;
+
+            void push_front(const Object & x);
+
+            void push_front(Object && x);
+
+            void push_back(const Object & x);
+
+            void push_back(Object && x);
+
+            void pop_front();
+
+            void pop_back();
+
+            /* Insert x before itr */
+            iterator insert(iterator itr,
+                const Object & x);
+
+            iterator insert(iterator itr, Object && x);
+
+            iterator erase(iterator itr);
+
+            iterator erase(iterator from, iterator to);
+
+        private:
+            int theSize;
+            Node * head;
+            Node * tail;
+
+            void init();
     };
