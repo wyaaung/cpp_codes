@@ -1,6 +1,14 @@
 #include <iostream>
 #include <vector>
 
+/*
+Time Complexity: O(n*log(n))
+Auxiliary Space: O(n)
+
+1. Partition process is the same in both recursive and iterative. The same techniques to choose optimal pivot can also be applied to the iterative version.
+2. To reduce the stack size, first push the indexes of smaller half.
+3. Use insertion sort when the size reduces below an experimentally calculated threshold.
+*/
 #define SIZE 100000
 
 using namespace std;

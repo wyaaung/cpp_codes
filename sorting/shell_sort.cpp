@@ -8,6 +8,7 @@
  * Sorts elements that are far apart from each other 
  * and successively reduces the interval between the elements to be sorted.
  * 
+ * Time Complexity: O(n^2) (Worst Case Complexity), O(n logn) (Best Case Complexity)
  */
 
 using namespace std;

@@ -4,6 +4,10 @@
 #define uint unsigned int
 #define SIZE 100000
 
+/*
+Time Complexity: O(N log(N))
+Space Complexity: O(N) since all elements are copied into an auniliary array.
+*/
 using namespace std;
 
 void display(vector<int> &arr){

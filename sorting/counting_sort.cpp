@@ -5,6 +5,14 @@
  * The algo iterates through the original array and calculates how many times each element appears in the array.
  * 
  */
+
+/*
+Time Complexity: O(n)
+Auxiliary Space: O(n)
+
+It is only efficient if the range of input data is not significantly greater than the number of objects to be sorted.
+It is not a stable sorting algorithm.
+*/
 #include <iostream>
 #include <vector>
 

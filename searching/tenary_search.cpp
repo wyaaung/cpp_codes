@@ -10,6 +10,14 @@
  *
  */
 
+/*
+Time Complexity: O(log3n), where n is the size of the array.
+Auxiliary Space: O(1)
+
+Same as the binary search. The only difference is that, it reduces the time complexity a bit more.
+Its time complexity is O(log n base 3) and that of binary search is O(log n base 2).
+*/
+
 using namespace std;
 
 int tenarySearch(vector<int> &arr, int search){
