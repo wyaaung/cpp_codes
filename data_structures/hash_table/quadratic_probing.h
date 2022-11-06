@@ -5,17 +5,37 @@
 
 using namespace std;
 
-bool isPrime(int n) {
-    for (int i = 2; i*i <= n; i++)
-        if (n % i == 0) {
+/**
+ * Internal method to test if a positive number is prime.
+ * Not an efficient algorithm.
+ */
+bool isPrime( int n )
+{
+    if( n == 2 || n == 3 )
+        return true;
+
+    if( n == 1 || n % 2 == 0 )
+        return false;
+
+    for( int i = 3; i * i <= n; i += 2 )
+        if( n % i == 0 )
             return false;
-        }
+
     return true;
 }
 
-int nextPrime(int n)
+/**
+ * Internal method to return a prime number at least as large as n.
+ * Assumes n > 0.
+ */
+int nextPrime( int n )
 {
-    for (; !isPrime(n); n++);
+    if( n % 2 == 0 )
+        ++n;
+
+    for( ; !isPrime( n ); n += 2 )
+        ;
+
     return n;
 }
 
@@ -42,7 +62,7 @@ template <typename HashedObj>
                     : element{ e }, info{ i }{}
 
                 HashEntry( HashedObj && e, EntryType i = EMPTY )
-                    : element{ std::move( e ) }, info{ i}{}
+                    : element{ move( e ) }, info{ i }{}
             };
 
             vector<HashEntry> array;

@@ -29,6 +29,9 @@ template <typename HashedObj>
             return false;
         }
 
+        if( array[ currentPos ].info != DELETED )
+            ++currentSize;
+
         array[ currentPos ].element = x;
         array[ currentPos ].info = ACTIVE;
 
@@ -46,6 +49,9 @@ template <typename HashedObj>
         if (isActive( currentPos )) {
             return false;
         }
+
+        if( array[ currentPos ].info != DELETED )
+            ++currentSize;
 
         array[ currentPos ].element = move( x );
         array[ currentPos ].info = ACTIVE;
@@ -85,7 +91,8 @@ template <typename HashedObj>
         int currentPos = myhash( x );
 
         while( array[ currentPos ].info != EMPTY &&
-            array[ currentPos ].element != x ) {
+               array[ currentPos ].element != x )
+            {
                 currentPos += offset;  // Compute ith probe
                 offset += 2;
                 if( currentPos >= array.size( ) ) {
@@ -119,9 +126,3 @@ template <typename HashedObj>
         static hash<HashedObj> hf;
         return hf( x ) % array.size( );
     }
-
-int main(int argc, char const *argv[])
-{
-    /* code */
-    return 0;
-}
