@@ -1,3 +1,6 @@
+#ifndef QUADRATIC_PROBING_H
+#define QUADRATIC_PROBING_H
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -52,7 +55,7 @@ template <typename HashedObj>
             bool remove( const HashedObj & x );
 
             enum EntryType { ACTIVE, EMPTY, DELETED };
-        
+
         private:
             struct HashEntry {
                 HashedObj element;
@@ -73,3 +76,5 @@ template <typename HashedObj>
             void rehash();
             size_t myhash( const HashedObj & x ) const;
     };
+
+#endif
