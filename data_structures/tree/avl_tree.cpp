@@ -159,7 +159,9 @@ template <typename Comparable>
             insert( x, t -> left );
         } else if ( x > t -> element ) {
             insert( x, t -> right );
-        } 
+        } else {
+            return;
+        }
 
         balance( t );
     }
@@ -179,7 +181,9 @@ template <typename Comparable>
             insert( move(x), t -> left );
         } else if ( x > t -> element ) {
             insert( move(x), t -> right );
-        } 
+        } else {
+            return;
+        }
 
         balance( t );
     }
