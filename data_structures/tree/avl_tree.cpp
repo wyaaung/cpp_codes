@@ -55,6 +55,9 @@ template <typename Comparable>
  */
 template <typename Comparable>
     const Comparable & AVLTree< Comparable > ::findMin( ) const {
+        if( isEmpty( ) ) {
+            throw UnderFlowException("Under FLOW EXCEPTION");
+        }
         return findMin( root )->element;
     }
 
@@ -63,6 +66,9 @@ template <typename Comparable>
  */
 template <typename Comparable>
     const Comparable & AVLTree< Comparable > ::findMax( ) const {
+        if( isEmpty( ) ) {
+            throw UnderFlowException("Under FLOW EXCEPTION");
+        }
         return findMax( root )->element;
     }
 

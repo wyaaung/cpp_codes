@@ -1,3 +1,6 @@
+#ifndef AVL_TREE_H
+#define AVL_TREE_H
+
 #include <iostream>
 #include <algorithm>
 
@@ -12,6 +15,26 @@
  */
 
 using namespace std;
+
+struct UnderFlowException: public runtime_error {
+    UnderFlowException(const char * msg): runtime_error(msg) {}
+};
+
+// AvlTree class
+//
+// CONSTRUCTION: zero parameter
+//
+// ******************PUBLIC OPERATIONS*********************
+// void insert( x )       --> Insert x
+// void remove( x )       --> Remove x (unimplemented)
+// bool contains( x )     --> Return true if x is present
+// Comparable findMin( )  --> Return smallest item
+// Comparable findMax( )  --> Return largest item
+// boolean isEmpty( )     --> Return true if empty; else false
+// void makeEmpty( )      --> Remove all items
+// void printTree( )      --> Print tree in sorted order
+// ******************ERRORS********************************
+// Throws UnderflowException as warranted
 
 template <typename Comparable>
     class AVLTree {
@@ -95,3 +118,5 @@ template <typename Comparable>
             void printTree( AVLNode *t, ostream & out ) const;
             AVLNode * clone( AVLNode *t ) const;
     };
+
+#endif
