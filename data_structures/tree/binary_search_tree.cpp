@@ -55,6 +55,9 @@ template <typename Comparable>
  */
 template <typename Comparable>
     const Comparable & BinarySearchTree< Comparable > ::findMin( ) const {
+        if( isEmpty( ) ) {
+            throw UnderFlowException("Under FLOW EXCEPTION");
+        }
         return findMin( root )->element;
     }
 
@@ -63,6 +66,9 @@ template <typename Comparable>
  */
 template <typename Comparable>
     const Comparable & BinarySearchTree< Comparable > ::findMax( ) const {
+        if( isEmpty( ) ) {
+            throw UnderFlowException("Under FLOW EXCEPTION");
+        }
         return findMax( root )->element;
     }
 

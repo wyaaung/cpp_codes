@@ -1,3 +1,6 @@
+#ifndef BINARY_SEARCH_TREE_H
+#define BINARY_SEARCH_TREE_H
+
 #include <iostream>
 #include <algorithm>
 
@@ -16,6 +19,26 @@
 */
 
 using namespace std;
+
+struct UnderFlowException: public runtime_error {
+    UnderFlowException(const char * msg): runtime_error(msg) {}
+};
+
+// BinarySearchTree class
+//
+// CONSTRUCTION: zero parameter
+//
+// ******************PUBLIC OPERATIONS*********************
+// void insert( x )       --> Insert x
+// void remove( x )       --> Remove x
+// bool contains( x )     --> Return true if x is present
+// Comparable findMin( )  --> Return smallest item
+// Comparable findMax( )  --> Return largest item
+// boolean isEmpty( )     --> Return true if empty; else false
+// void makeEmpty( )      --> Remove all items
+// void printTree( )      --> Print tree in sorted order
+// ******************ERRORS********************************
+// Throws UnderflowException as warranted
 
 template <typename Comparable>
     class BinarySearchTree {
@@ -81,3 +104,5 @@ template <typename Comparable>
             void printTree( BinaryNode *t, ostream & out ) const;
             BinaryNode * clone( BinaryNode *t ) const;
     };
+
+#endif
