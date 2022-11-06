@@ -217,7 +217,7 @@ template <typename Comparable>
  * For AVL trees, this is a single rotation for case 1.
  * Update heights, then set new root
  * 
- * Clockwise right rotation
+ * Clockwise rotation
  */
 template <typename Comparable>
     void AVLTree< Comparable > ::rotateWithLeftChild( AVLNode * & k2 ) {
@@ -234,7 +234,7 @@ template <typename Comparable>
  * For AVL trees, this is a single rotation for case 1.
  * Update heights, then set new root
  * 
- * Clockwise left rotation
+ * Anticlockwise rotation
  */
 template <typename Comparable>
     void AVLTree< Comparable > ::rotateWithRightChild( AVLNode * & k1) {
@@ -252,8 +252,8 @@ template <typename Comparable>
  * For AVL trees, this is a double rotation for case 2.
  * Update heights, then set new root.
  * 
- * Clockwise left rotation on left child, then
- * Clockwise right rotation on its node
+ * Anticlockwise rotation on left child, then
+ * Clockwise rotation on its node
  */
 template <typename Comparable>
     void AVLTree< Comparable > ::doubleWithLeftChild( AVLNode * & k3 ) {
@@ -267,8 +267,8 @@ template <typename Comparable>
  * For AVL trees, this is a double rotation for case 2.
  * Update heights, then set new root.
  *
- * Clockwise right rotation on right child, then
- * Clockwise left rotation on its node
+ * Clockwise rotation on right child, then
+ * Anticlockwise rotation on its node
  */
 template <typename Comparable>
     void AVLTree< Comparable > ::doubleWithRightChild( AVLNode * & k1 ) {
