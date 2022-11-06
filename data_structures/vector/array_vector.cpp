@@ -128,10 +128,16 @@ template < typename Object >
 
 template < typename Object >
     void ArrayVector < Object > ::pop_back() {
+        if( empty( ) ) {
+            throw UnderFlowException("Under FLOW EXCEPTION");
+        }
         --theSize;
     }
 
 template < typename Object >
     const Object & ArrayVector < Object > ::back() const {
+        if( empty( ) ) {
+            throw UnderFlowException("Under FLOW EXCEPTION");
+        }
         return objects[theSize - 1];
     }

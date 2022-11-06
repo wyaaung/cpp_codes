@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 #include <iostream>
 #include <stdexcept>
 #include <algorithm>
@@ -6,6 +9,10 @@ using namespace std;
 
 struct IndexOutOfBounds: public runtime_error {
     IndexOutOfBounds(const char * msg): runtime_error(msg) {}
+};
+
+struct UnderFlowException: public runtime_error {
+    UnderFlowException(const char * msg): runtime_error(msg) {}
 };
 
 template < typename Object >
@@ -51,19 +58,19 @@ template < typename Object >
             typedef const Object * const_iterator;
 
             iterator begin() {
-                return objects[0];
+                return &objects[ 0 ];
             }
 
             const_iterator begin() const {
-                return objects[0];
+                return &objects[ 0 ];
             }
 
             iterator end() {
-                return &ArrayVector < Object > ::objects[size()];
+                return &objects[ size( ) ];
             }
 
             const_iterator end() const {
-                return &ArrayVector < Object > ::objects[size()];
+                return &objects[ size( ) ];
             }
 
             static const int SPARE_CAPACITY = 16;
@@ -74,3 +81,5 @@ template < typename Object >
             int theCapacity;
             Object * objects;
     };
+
+#endif
