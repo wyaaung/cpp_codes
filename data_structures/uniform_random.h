@@ -9,6 +9,8 @@ typedef unsigned int uint;
 
 using namespace std;
 
+int currentTimeSeconds( );
+
 class UniformRandom {
     public:
         UniformRandom( int seed = currentTimeSeconds( ) )
