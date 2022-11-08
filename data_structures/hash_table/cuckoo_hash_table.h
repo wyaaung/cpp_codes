@@ -84,7 +84,7 @@ class StringHashFamily {
     
     private:
         vector<int> MULTIPLIERS;
-
+        UniformRandom r;
 };
 
 #define MAX_LOAD 0.40  /* g++ 4.6 does not support static const double */
