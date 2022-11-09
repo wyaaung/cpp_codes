@@ -109,8 +109,8 @@ class HashTable {
         void makeEmpty( );
         bool insert( const AnyType & x );
         bool insert( AnyType && x );
-        int size( );
-        int capacity( );
+        int size( ) const;
+        int capacity( ) const;
         bool remove( const AnyType & x );
 
     private:
@@ -140,6 +140,7 @@ class HashTable {
         bool insertHelper( AnyType && x);
 
         bool isActive( int currentPos ) const;
+        int findPos( const AnyType & x ) const;
         void expand( );
         void rehash( );
         void rehash( int newSize );
