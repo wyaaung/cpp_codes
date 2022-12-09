@@ -5,7 +5,7 @@ class Magazine : public Document {
         int _issue;     // issue number of a magazine
     public:
         /* Constructor and Destructor */
-        Magazine(const char *title, int issue, int year, int quantity);
+        Magazine(string title, int issue, int year, int quantity);
         ~Magazine();
 
         document_type getDocumentType();

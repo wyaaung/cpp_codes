@@ -4,24 +4,14 @@
 Novel::Novel(const char *title, const char *author, int year, int quantity){
     updateYear(year);
     updateQuantity(quantity);
-
-    _title = (char*) malloc((strlen(title)+1) * sizeof(char));
-    if (_title == NULL) {
-        exit(-1);
-    }
-    strcpy(_title, title);
-
-    _author = (char*) malloc((strlen(author)+1) * sizeof(char));
-    if (_author == NULL){
-        exit(-1);
-    }
-    strcpy(_author, author);
+    updateTitle(title);
+    updateAuthor(author);
 }
 
 /*Novel class destructor*/
 Novel::~Novel(){
-    free(_title);
-    free(_author);
+    _author.erase();
+    _title.erase();
 }
 
 /*getter for the type of the document. Returns DOC_NOVEL*/
@@ -38,18 +28,11 @@ void Novel::print(){
 }
 
 /*Setting the name of the author of the novel*/
-void Novel::updateAuthor(const char *newAuthor){
-    free(_author);
-
-    /* Dynamic Memory Allocation */
-    _author = (char*) malloc((strlen(newAuthor)+1) * sizeof(char));
-    if(_author == NULL){
-        exit(-1);
-    }
-    strcpy(_author, newAuthor);
+void Novel::updateAuthor(string newAuthor){
+    _author = newAuthor;
 }
 
 /*getter for the name of the author of the novel*/
-char* Novel::getAuthor(){
+string Novel::getAuthor(){
     return _author;
 }

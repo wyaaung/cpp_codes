@@ -2,6 +2,7 @@
 #define DOCUMENT_H
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ typedef enum {
 
 class Document {
     protected:
-        char *_title;   // document title
+        string _title;   // document title
         int _year;      // year of publication
         int _quantity;  // quantity held in the library
                         // borrow (-1) and return (-1)
@@ -24,10 +25,10 @@ class Document {
         virtual void print() = 0;
 
         /* Setters and Getters */
-        void updateTitle(const char *newTitle);
+        void updateTitle(string newTitle);
         void updateYear(int newYear);
         void updateQuantity(int newQuantity);
-        char *getTitle();
+        string getTitle();
         int getYear();
         int getQuantity();
 
@@ -37,6 +38,9 @@ class Document {
 
         /* Used when someone returns a document */
         void returnDoc();
+
+        /* Virtual Destructor */
+        virtual ~Document(){};
 };
 
 #endif  /* DOCUMENT_H */

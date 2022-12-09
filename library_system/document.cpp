@@ -1,13 +1,8 @@
 #include "document.h"
 
 /*Setting the title of the document*/
-void Document::updateTitle(const char *newTitle) {
-    free(_title);
-    _title = (char*) malloc((strlen(newTitle)+1) * sizeof(char));
-    if (_title == NULL){
-        exit(-1);
-    }
-    strcpy(_title, newTitle);
+void Document::updateTitle(string newTitle) {
+    _title = newTitle;
 }
 
 /*Setting the year of the document*/
@@ -21,7 +16,7 @@ void Document::updateQuantity(int newQuantity){
 }
 
 /*Getter for the title of the document*/
-char* Document::getTitle(){
+string Document::getTitle(){
     return _title;
 }
 

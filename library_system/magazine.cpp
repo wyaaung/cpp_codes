@@ -1,22 +1,16 @@
 #include "magazine.h"
 
 /*Magazine class constructor, inherited from the document*/
-Magazine::Magazine(const char *title, int issue, int year, int quantity){
+Magazine::Magazine(string title, int issue, int year, int quantity){
     updateIssue(issue);
     updateYear(year);
     updateQuantity(quantity);
-
-    /* Dynamic Memory Allocation */
-    _title = (char*) malloc((strlen(title)+1) * sizeof(char));
-    if(_title == NULL){
-        exit(-1);
-    } 
-    strcpy(_title, title);
+    updateTitle(title);
 }
 
 /*Magazine class destructor*/
 Magazine::~Magazine(){
-    free(_title);
+    _title.erase();
 }
 
 /*getter for the type of the document. Returns DOC_MAGAZINE*/

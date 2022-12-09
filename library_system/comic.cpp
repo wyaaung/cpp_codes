@@ -1,17 +1,9 @@
 #include "comic.h"
 
 /*Comic class constructor, inherited from the document*/
-Comic::Comic(const char *title, const char *author, int issue, int year, int quantity){
-    _title = (char*) malloc((strlen(title)+1) * sizeof(char));
-    if(_title == NULL){
-        exit(-1);
-    } 
-    strcpy(_title, title);
-    _author = (char*) malloc((strlen(author)+1) * sizeof(char));
-    if(_author == NULL){
-        exit(-1);
-    } 
-    strcpy(_author, author);
+Comic::Comic(string title, string author, int issue, int year, int quantity) {
+    updateTitle(title);
+    updateAuthor(author);
     updateIssue(issue);
     updateYear(year);
     updateQuantity(quantity);
@@ -19,8 +11,8 @@ Comic::Comic(const char *title, const char *author, int issue, int year, int qua
 
 /*Comic class destructor*/
 Comic::~Comic(){
-    free(_title);
-    free(_author);
+    _author.erase();
+    _title.erase();
 }
 
 /*getter for the type of the document. Returns DOC_COMIC*/
@@ -38,14 +30,8 @@ void Comic::print(){
 }
 
 /*Setting the name of the author of the comic*/
-void Comic::updateAuthor(const char *newAuthor){
-    free(_author);
-    /* Dynamic Memory Allocation */
-    _author = (char*) malloc((strlen(newAuthor)+1) * sizeof(char));
-    if(_author == NULL){
-        exit(-1);
-    } 
-    strcpy(_author, newAuthor);
+void Comic::updateAuthor(string newAuthor){
+    _author = newAuthor;
 }
 
 /*Setting the issue of the comic*/
@@ -54,7 +40,7 @@ void Comic::updateIssue(int newIssue){
 }
 
 /*getter for the name of the author of the comic*/
-char* Comic::getAuthor(){
+string Comic::getAuthor(){
     return _author;
 }
 
